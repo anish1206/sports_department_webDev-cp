@@ -747,4 +747,252 @@
                                 <input type="file" id="domicileCertificate" name="domicileCertificate" accept=".pdf">
                                 <label for="domicileCertificate" class="file-upload-label">Choose Domicile Certificate File</label>
                             </div>
-                            <div class="error"
+                            <div class="error"id="domicileCertificateError"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="incomeCertificate">Income Certificate Upload (PDF only)</label>
+                            <div class="file-upload">
+                                <input type="file" id="incomeCertificate" name="incomeCertificate" accept=".pdf">
+                                <label for="incomeCertificate" class="file-upload-label">Choose Income Certificate File</label>
+                            </div>
+                            <div class="error" id="incomeCertificateError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="medicalCertificate">Medical Certificate Upload (PDF only)</label>
+                            <div class="file-upload">
+                                <input type="file" id="medicalCertificate" name="medicalCertificate" accept=".pdf">
+                                <label for="medicalCertificate" class="file-upload-label">Choose Medical Certificate File</label>
+                            </div>
+                            <div class="error" id="medicalCertificateError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="section">
+                    <h3 class="section-title">Terms and Conditions</h3>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I hereby declare that all the information provided above is true and correct to the best of my knowledge. I understand that any false information may lead to cancellation of my registration. <span class="required">*</span></label>
+                    </div>
+                    <div class="error" id="termsError"></div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">I give my consent for the Government of India Sports Department to use my personal information for sports-related programs and communications. <span class="required">*</span></label>
+                    </div>
+                    <div class="error" id="consentError"></div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Submit Registration
+                    <span class="loading" id="loading">⏳</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // File upload handling
+            $('input[type="file"]').change(function() {
+                const file = this.files[0];
+                const label = $(this).siblings('.file-upload-label');
+                
+                if (file) {
+                    label.text(file.name).addClass('has-file');
+                    
+                    // Show image preview for photo upload
+                    if (this.id === 'uploadPhoto' && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('#photoPreview').attr('src', e.target.result).show();
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                } else {
+                    label.text(label.data('original-text')).removeClass('has-file');
+                    if (this.id === 'uploadPhoto') {
+                        $('#photoPreview').hide();
+                    }
+                }
+            });
+
+            // Store original label text
+            $('.file-upload-label').each(function() {
+                $(this).data('original-text', $(this).text());
+            });
+
+            // Password strength checker
+            $('#password').on('input', function() {
+                const password = $(this).val();
+                const strengthBar = $('#passwordStrengthBar');
+                let strength = 0;
+                
+                if (password.length >= 8) strength++;
+                if (/[a-z]/.test(password)) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/[0-9]/.test(password)) strength++;
+                if (/[^A-Za-z0-9]/.test(password)) strength++;
+                
+                strengthBar.removeClass('strength-weak strength-fair strength-good strength-strong');
+                
+                if (strength <= 2) {
+                    strengthBar.addClass('strength-weak');
+                } else if (strength === 3) {
+                    strengthBar.addClass('strength-fair');
+                } else if (strength === 4) {
+                    strengthBar.addClass('strength-good');
+                } else {
+                    strengthBar.addClass('strength-strong');
+                }
+            });
+
+            // Form validation
+            function validateField(fieldId, validationRules) {
+                const field = $('#' + fieldId);
+                const value = field.val().trim();
+                const errorDiv = $('#' + fieldId + 'Error');
+                
+                for (let rule of validationRules) {
+                    if (!rule.test(value)) {
+                        field.addClass('input-error');
+                        errorDiv.text(rule.message).show();
+                        return false;
+                    }
+                }
+                
+                field.removeClass('input-error');
+                errorDiv.hide();
+                return true;
+            }
+
+            // Validation rules
+            const validationRules = {
+                fullName: [
+                    { test: (val) => val.length > 0, message: 'Full name is required' },
+                    { test: (val) => /^[a-zA-Z\s]+$/.test(val), message: 'Only letters and spaces allowed' }
+                ],
+                email: [
+                    { test: (val) => val.length > 0, message: 'Email is required' },
+                    { test: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), message: 'Enter a valid email address' }
+                ],
+                mobileNumber: [
+                    { test: (val) => val.length > 0, message: 'Mobile number is required' },
+                    { test: (val) => /^[6-9]\d{9}$/.test(val), message: 'Enter a valid 10-digit mobile number' }
+                ],
+                aadharNumber: [
+                    { test: (val) => val.length > 0, message: 'Aadhar number is required' },
+                    { test: (val) => /^\d{4}\s?\d{4}\s?\d{4}$/.test(val), message: 'Enter a valid 12-digit Aadhar number' }
+                ],
+                dob: [
+                    { test: (val) => val.length > 0, message: 'Date of birth is required' },
+                    { test: (val) => /^\d{2}\/\d{2}\/\d{4}$/.test(val), message: 'Use DD/MM/YYYY format' }
+                ],
+                pincode: [
+                    { test: (val) => val.length > 0, message: 'Pincode is required' },
+                    { test: (val) => /^\d{6}$/.test(val), message: 'Enter a valid 6-digit pincode' }
+                ],
+                password: [
+                    { test: (val) => val.length > 0, message: 'Password is required' },
+                    { test: (val) => val.length >= 8, message: 'Password must be at least 8 characters long' }
+                ],
+                confirmPassword: [
+                    { test: (val) => val.length > 0, message: 'Please confirm your password' },
+                    { test: (val) => val === $('#password').val(), message: 'Passwords do not match' }
+                ]
+            };
+
+            // Real-time validation
+            Object.keys(validationRules).forEach(fieldId => {
+                $('#' + fieldId).on('blur', function() {
+                    validateField(fieldId, validationRules[fieldId]);
+                });
+            });
+
+            // Form submission
+            $('#registrationForm').submit(function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                
+                // Validate all fields
+                Object.keys(validationRules).forEach(fieldId => {
+                    if (!validateField(fieldId, validationRules[fieldId])) {
+                        isValid = false;
+                    }
+                });
+
+                // Check required fields
+                $('input[required], select[required], textarea[required]').each(function() {
+                    if (!$(this).val().trim()) {
+                        $(this).addClass('input-error');
+                        $('#' + $(this).attr('id') + 'Error').text('This field is required').show();
+                        isValid = false;
+                    }
+                });
+
+                // Check terms and conditions
+                if (!$('#terms').is(':checked')) {
+                    $('#termsError').text('You must accept the terms and conditions').show();
+                    isValid = false;
+                }
+
+                if (!$('#consent').is(':checked')) {
+                    $('#consentError').text('You must provide consent to proceed').show();
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    // Show loading
+                    $('#submitBtn').prop('disabled', true);
+                    $('#loading').show();
+                    
+                    // Simulate form submission
+                    setTimeout(function() {
+                        $('#loading').hide();
+                        $('#submitBtn').prop('disabled', false);
+                        $('#successMessage').show();
+                        $('html, body').animate({scrollTop: 0}, 500);
+                        $('#registrationForm')[0].reset();
+                        $('.file-upload-label').each(function() {
+                            $(this).text($(this).data('original-text')).removeClass('has-file');
+                        });
+                        $('#photoPreview').hide();
+                    }, 2000);
+                }
+            });
+
+            // Format Aadhar number input
+            $('#aadharNumber').on('input', function() {
+                let value = $(this).val().replace(/\s/g, '');
+                if (value.length > 0) {
+                    value = value.match(/.{1,4}/g).join(' ');
+                }
+                $(this).val(value);
+            });
+
+            // Auto-format date input
+            $('#dob').on('input', function() {
+                let value = $(this).val().replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0,2) + '/' + value.substring(2);
+                }
+                if (value.length >= 5) {
+                    value = value.substring(0,5) + '/' + value.substring(5,9);
+                }
+                $(this).val(value);
+            });
+
+            // Mobile number validation
+            $('#mobileNumber, #alternateContact').on('input', function() {
+                $(this).val($(this).val().replace(/\D/g, '').substring(0,10));
+            });
+        });
+    </script>
+</body>
+</html>
