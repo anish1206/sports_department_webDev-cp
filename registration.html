@@ -523,6 +523,62 @@
                 $(this).val(value);
             });
 
+            // Name fields - only allow letters and spaces
+            $('#firstName, #middleName, #lastName, #motherName').on('input', function() {
+                let value = $(this).val();
+                // Remove any character that is not a letter or space
+                value = value.replace(/[^a-zA-Z\s]/g, '');
+                $(this).val(value);
+            });
+
+            // Address fields - only allow letters, numbers, spaces, and basic punctuation
+            $('#address').on('input', function() {
+                let value = $(this).val();
+                // Allow letters, numbers, spaces, commas, periods, hyphens, and apostrophes
+                value = value.replace(/[^a-zA-Z0-9\s,.\-']/g, '');
+                $(this).val(value);
+            });
+
+            // City and State - only allow letters and spaces
+            $('#city, #state').on('input', function() {
+                let value = $(this).val();
+                // Remove any character that is not a letter or space
+                value = value.replace(/[^a-zA-Z\s]/g, '');
+                $(this).val(value);
+            });
+
+            // Class field - allow letters, numbers, spaces, and basic punctuation
+            $('#class').on('input', function() {
+                let value = $(this).val();
+                // Allow letters, numbers, spaces, and basic punctuation for academic terms
+                value = value.replace(/[^a-zA-Z0-9\s,.\-']/g, '');
+                $(this).val(value);
+            });
+
+            // Division - only allow letters and numbers
+            $('#division').on('input', function() {
+                let value = $(this).val();
+                // Remove any character that is not a letter or number
+                value = value.replace(/[^a-zA-Z0-9]/g, '');
+                $(this).val(value);
+            });
+
+            // Sports and Hobbies - only allow letters, spaces, and commas
+            $('#sports, #hobbies').on('input', function() {
+                let value = $(this).val();
+                // Allow letters, spaces, and commas for listing multiple items
+                value = value.replace(/[^a-zA-Z\s,]/g, '');
+                $(this).val(value);
+            });
+
+            // ZIP Code - only allow numbers and hyphens
+            $('#zipCode').on('input', function() {
+                let value = $(this).val();
+                // Allow only numbers and hyphens for ZIP codes
+                value = value.replace(/[^0-9\-]/g, '');
+                $(this).val(value);
+            });
+
             // Real-time validation
             $('input[required], select[required], textarea[required]').on('blur', function() {
                 validateField($(this));
