@@ -798,201 +798,531 @@
 
     <script>
         $(document).ready(function() {
-            // File upload handling
-            $('input[type="file"]').change(function() {
-                const file = this.files[0];
-                const label = $(this).siblings('.file-upload-label');
-                
-                if (file) {
-                    label.text(file.name).addClass('has-file');
-                    
-                    // Show image preview for photo upload
-                    if (this.id === 'uploadPhoto' && file.type.startsWith('image/')) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            $('#photoPreview').attr('src', e.target.result).show();
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                } else {
-                    label.text(label.data('original-text')).removeClass('has-file');
-                    if (this.id === 'uploadPhoto') {
-                        $('#photoPreview').hide();
-                    }
-                }
-            });
-
-            // Store original label text
-            $('.file-upload-label').each(function() {
-                $(this).data('original-text', $(this).text());
-            });
-
-            // Password strength checker
-            $('#password').on('input', function() {
-                const password = $(this).val();
-                const strengthBar = $('#passwordStrengthBar');
-                let strength = 0;
-                
-                if (password.length >= 8) strength++;
-                if (/[a-z]/.test(password)) strength++;
-                if (/[A-Z]/.test(password)) strength++;
-                if (/[0-9]/.test(password)) strength++;
-                if (/[^A-Za-z0-9]/.test(password)) strength++;
-                
-                strengthBar.removeClass('strength-weak strength-fair strength-good strength-strong');
-                
-                if (strength <= 2) {
-                    strengthBar.addClass('strength-weak');
-                } else if (strength === 3) {
-                    strengthBar.addClass('strength-fair');
-                } else if (strength === 4) {
-                    strengthBar.addClass('strength-good');
-                } else {
-                    strengthBar.addClass('strength-strong');
-                }
-            });
-
-            // Form validation
-            function validateField(fieldId, validationRules) {
-                const field = $('#' + fieldId);
-                const value = field.val().trim();
-                const errorDiv = $('#' + fieldId + 'Error');
-                
-                for (let rule of validationRules) {
-                    if (!rule.test(value)) {
-                        field.addClass('input-error');
-                        errorDiv.text(rule.message).show();
-                        return false;
-                    }
-                }
-                
-                field.removeClass('input-error');
-                errorDiv.hide();
-                return true;
+    // File upload handling
+    $('input[type="file"]').change(function() {
+        const file = this.files[0];
+        const label = $(this).siblings('.file-upload-label');
+        
+        if (file) {
+            label.text(file.name).addClass('has-file');
+            
+            // Show image preview for photo upload
+            if (this.id === 'uploadPhoto' && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#photoPreview').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(file);
             }
+        } else {
+            label.text(label.data('original-text')).removeClass('has-file');
+            if (this.id === 'uploadPhoto') {
+                $('#photoPreview').hide();
+            }
+        }
+    });
 
-            // Validation rules
-            const validationRules = {
-                fullName: [
-                    { test: (val) => val.length > 0, message: 'Full name is required' },
-                    { test: (val) => /^[a-zA-Z\s]+$/.test(val), message: 'Only letters and spaces allowed' }
-                ],
-                email: [
-                    { test: (val) => val.length > 0, message: 'Email is required' },
-                    { test: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), message: 'Enter a valid email address' }
-                ],
-                mobileNumber: [
-                    { test: (val) => val.length > 0, message: 'Mobile number is required' },
-                    { test: (val) => /^[6-9]\d{9}$/.test(val), message: 'Enter a valid 10-digit mobile number' }
-                ],
-                aadharNumber: [
-                    { test: (val) => val.length > 0, message: 'Aadhar number is required' },
-                    { test: (val) => /^\d{4}\s?\d{4}\s?\d{4}$/.test(val), message: 'Enter a valid 12-digit Aadhar number' }
-                ],
-                dob: [
-                    { test: (val) => val.length > 0, message: 'Date of birth is required' },
-                    { test: (val) => /^\d{2}\/\d{2}\/\d{4}$/.test(val), message: 'Use DD/MM/YYYY format' }
-                ],
-                pincode: [
-                    { test: (val) => val.length > 0, message: 'Pincode is required' },
-                    { test: (val) => /^\d{6}$/.test(val), message: 'Enter a valid 6-digit pincode' }
-                ],
-                password: [
-                    { test: (val) => val.length > 0, message: 'Password is required' },
-                    { test: (val) => val.length >= 8, message: 'Password must be at least 8 characters long' }
-                ],
-                confirmPassword: [
-                    { test: (val) => val.length > 0, message: 'Please confirm your password' },
-                    { test: (val) => val === $('#password').val(), message: 'Passwords do not match' }
-                ]
-            };
+    // Store original label text
+    $('.file-upload-label').each(function() {
+        $(this).data('original-text', $(this).text());
+    });
 
-            // Real-time validation
-            Object.keys(validationRules).forEach(fieldId => {
-                $('#' + fieldId).on('blur', function() {
-                    validateField(fieldId, validationRules[fieldId]);
-                });
-            });
+    // Password strength checker
+    $('#password').on('input', function() {
+        const password = $(this).val();
+        const strengthBar = $('#passwordStrengthBar');
+        let strength = 0;
+        
+        if (password.length >= 8) strength++;
+        if (/[a-z]/.test(password)) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+        
+        strengthBar.removeClass('strength-weak strength-fair strength-good strength-strong');
+        
+        if (strength <= 2) {
+            strengthBar.addClass('strength-weak');
+        } else if (strength === 3) {
+            strengthBar.addClass('strength-fair');
+        } else if (strength === 4) {
+            strengthBar.addClass('strength-good');
+        } else {
+            strengthBar.addClass('strength-strong');
+        }
+    });
 
-            // Form submission
-            $('#registrationForm').submit(function(e) {
-                e.preventDefault();
-                
-                let isValid = true;
-                
-                // Validate all fields
-                Object.keys(validationRules).forEach(fieldId => {
-                    if (!validateField(fieldId, validationRules[fieldId])) {
-                        isValid = false;
-                    }
-                });
+    // Comprehensive validation function
+    function validateField(fieldId, validationRules) {
+        const field = $('#' + fieldId);
+        const value = field.val().trim();
+        const errorDiv = $('#' + fieldId + 'Error');
+        
+        for (let rule of validationRules) {
+            if (!rule.test(value)) {
+                field.addClass('input-error');
+                errorDiv.text(rule.message).show();
+                return false;
+            }
+        }
+        
+        field.removeClass('input-error');
+        errorDiv.hide();
+        return true;
+    }
 
-                // Check required fields
-                $('input[required], select[required], textarea[required]').each(function() {
-                    if (!$(this).val().trim()) {
-                        $(this).addClass('input-error');
-                        $('#' + $(this).attr('id') + 'Error').text('This field is required').show();
-                        isValid = false;
-                    }
-                });
+    // Comprehensive validation rules for all fields
+    const validationRules = {
+        // Personal Details
+        fullName: [
+            { test: (val) => val.length > 0, message: 'Full name is required' },
+            { test: (val) => val.length >= 2, message: 'Name must be at least 2 characters' },
+            { test: (val) => val.length <= 50, message: 'Name cannot exceed 50 characters' },
+            { test: (val) => /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' },
+            { test: (val) => !/^\s|\s$/.test(val), message: 'Name cannot start or end with space' }
+        ],
+        
+        gender: [
+            { test: (val) => val.length > 0, message: 'Gender selection is required' }
+        ],
+        
+        dob: [
+            { test: (val) => val.length > 0, message: 'Date of birth is required' },
+            { test: (val) => /^\d{2}\/\d{2}\/\d{4}$/.test(val), message: 'Use DD/MM/YYYY format (e.g., 15/08/1995)' },
+            { test: (val) => {
+                if (!/^\d{2}\/\d{2}\/\d{4}$/.test(val)) return false;
+                const [day, month, year] = val.split('/').map(Number);
+                const date = new Date(year, month - 1, day);
+                const today = new Date();
+                const age = today.getFullYear() - date.getFullYear();
+                return age >= 16 && age <= 35;
+            }, message: 'Age must be between 16 and 35 years' },
+            { test: (val) => {
+                if (!/^\d{2}\/\d{2}\/\d{4}$/.test(val)) return false;
+                const [day, month, year] = val.split('/').map(Number);
+                return day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 1980 && year <= 2010;
+            }, message: 'Please enter a valid date' }
+        ],
+        
+        aadharNumber: [
+            { test: (val) => val.length > 0, message: 'Aadhar number is required' },
+            { test: (val) => /^\d{4}\s?\d{4}\s?\d{4}$/.test(val), message: 'Enter a valid 12-digit Aadhar number (e.g., 1234 5678 9012)' },
+            { test: (val) => {
+                const cleaned = val.replace(/\s/g, '');
+                return cleaned.length === 12 && !isNaN(cleaned);
+            }, message: 'Aadhar must contain exactly 12 digits' }
+        ],
+        
+        nationality: [
+            { test: (val) => val.length > 0, message: 'Nationality selection is required' }
+        ],
+        
+        bloodGroup: [
+            { test: (val) => val.length > 0, message: 'Blood group selection is required' }
+        ],
+        
+        fatherName: [
+            { test: (val) => val.length > 0, message: "Father's name is required" },
+            { test: (val) => val.length >= 2, message: 'Name must be at least 2 characters' },
+            { test: (val) => val.length <= 50, message: 'Name cannot exceed 50 characters' },
+            { test: (val) => /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' }
+        ],
+        
+        motherName: [
+            { test: (val) => val.length > 0, message: "Mother's name is required" },
+            { test: (val) => val.length >= 2, message: 'Name must be at least 2 characters' },
+            { test: (val) => val.length <= 50, message: 'Name cannot exceed 50 characters' },
+            { test: (val) => /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' }
+        ],
+        
+        mobileNumber: [
+            { test: (val) => val.length > 0, message: 'Mobile number is required' },
+            { test: (val) => /^[6-9]\d{9}$/.test(val), message: 'Enter a valid 10-digit mobile number starting with 6-9' },
+            { test: (val) => val.length === 10, message: 'Mobile number must be exactly 10 digits' }
+        ],
+        
+        alternateContact: [
+            { test: (val) => val === '' || /^[6-9]\d{9}$/.test(val), message: 'Enter a valid 10-digit mobile number starting with 6-9' }
+        ],
+        
+        email: [
+            { test: (val) => val.length > 0, message: 'Email is required' },
+            { test: (val) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val), message: 'Enter a valid email address' },
+            { test: (val) => val.length <= 100, message: 'Email cannot exceed 100 characters' }
+        ],
+        
+        password: [
+            { test: (val) => val.length > 0, message: 'Password is required' },
+            { test: (val) => val.length >= 8, message: 'Password must be at least 8 characters long' },
+            { test: (val) => val.length <= 20, message: 'Password cannot exceed 20 characters' },
+            { test: (val) => /[a-z]/.test(val), message: 'Password must contain at least one lowercase letter' },
+            { test: (val) => /[A-Z]/.test(val), message: 'Password must contain at least one uppercase letter' },
+            { test: (val) => /[0-9]/.test(val), message: 'Password must contain at least one number' },
+            { test: (val) => /[!@#$%^&*(),.?":{}|<>]/.test(val), message: 'Password must contain at least one special character' }
+        ],
+        
+        confirmPassword: [
+            { test: (val) => val.length > 0, message: 'Please confirm your password' },
+            { test: (val) => val === $('#password').val(), message: 'Passwords do not match' }
+        ],
+        
+        motherTongue: [
+            { test: (val) => val.length > 0, message: 'Mother tongue is required' },
+            { test: (val) => /^[a-zA-Z\s]+$/.test(val), message: 'Only letters and spaces allowed' },
+            { test: (val) => val.length >= 2, message: 'Must be at least 2 characters' }
+        ],
+        
+        address: [
+            { test: (val) => val.length > 0, message: 'Complete address is required' },
+            { test: (val) => val.length >= 10, message: 'Address must be at least 10 characters' },
+            { test: (val) => val.length <= 200, message: 'Address cannot exceed 200 characters' }
+        ],
+        
+        pincode: [
+            { test: (val) => val.length > 0, message: 'Pincode is required' },
+            { test: (val) => /^\d{6}$/.test(val), message: 'Enter a valid 6-digit pincode' }
+        ],
+        
+        district: [
+            { test: (val) => val.length > 0, message: 'District is required' },
+            { test: (val) => /^[a-zA-Z\s]+$/.test(val), message: 'Only letters and spaces allowed' },
+            { test: (val) => val.length >= 2, message: 'Must be at least 2 characters' }
+        ],
+        
+        state: [
+            { test: (val) => val.length > 0, message: 'State is required' },
+            { test: (val) => /^[a-zA-Z\s]+$/.test(val), message: 'Only letters and spaces allowed' },
+            { test: (val) => val.length >= 2, message: 'Must be at least 2 characters' }
+        ],
+        
+        // Sports-Specific Fields
+        sportsParticipated: [
+            { test: (val) => val.length > 0, message: 'Sports participated is required' },
+            { test: (val) => /^[a-zA-Z0-9\s,.-]+$/.test(val), message: 'Only letters, numbers, spaces, commas, dots and hyphens allowed' },
+            { test: (val) => val.length >= 3, message: 'Must be at least 3 characters' }
+        ],
+        
+        position: [
+            { test: (val) => val.length > 0, message: 'Position/Role is required' },
+            { test: (val) => /^[a-zA-Z\s/-]+$/.test(val), message: 'Only letters, spaces, hyphens and forward slashes allowed' },
+            { test: (val) => val.length >= 2, message: 'Must be at least 2 characters' }
+        ],
+        
+        yearsExperience: [
+            { test: (val) => val.length > 0, message: 'Years of experience is required' }
+        ],
+        
+        height: [
+            { test: (val) => val.length > 0, message: 'Height is required' },
+            { test: (val) => !isNaN(val) && val > 0, message: 'Height must be a positive number' },
+            { test: (val) => val >= 140 && val <= 220, message: 'Height must be between 140-220 cm' }
+        ],
+        
+        weight: [
+            { test: (val) => val.length > 0, message: 'Weight is required' },
+            { test: (val) => !isNaN(val) && val > 0, message: 'Weight must be a positive number' },
+            { test: (val) => val >= 35 && val <= 150, message: 'Weight must be between 35-150 kg' }
+        ],
+        
+        favoriteSportsperson: [
+            { test: (val) => val === '' || /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' }
+        ],
+        
+        achievements: [
+            { test: (val) => val.length > 0, message: 'Achievements are required' },
+            { test: (val) => val.length >= 10, message: 'Please provide detailed achievements (minimum 10 characters)' },
+            { test: (val) => val.length <= 500, message: 'Achievements cannot exceed 500 characters' }
+        ],
+        
+        preferredVenue: [
+            { test: (val) => val === '' || /^[a-zA-Z0-9\s,.-]+$/.test(val), message: 'Only letters, numbers, spaces, commas, dots and hyphens allowed' }
+        ],
+        
+        coachName: [
+            { test: (val) => val === '' || /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' }
+        ],
+        
+        // College-Related Fields
+        collegeName: [
+            { test: (val) => val.length > 0, message: 'College/University name is required' },
+            { test: (val) => val.length >= 5, message: 'College name must be at least 5 characters' },
+            { test: (val) => val.length <= 100, message: 'College name cannot exceed 100 characters' },
+            { test: (val) => /^[a-zA-Z0-9\s,.&()-]+$/.test(val), message: 'Only letters, numbers, spaces and common punctuation allowed' }
+        ],
+        
+        courseYear: [
+            { test: (val) => val.length > 0, message: 'Course & Year is required' },
+            { test: (val) => val.length >= 5, message: 'Must be at least 5 characters' },
+            { test: (val) => /^[a-zA-Z0-9\s.&()-]+$/.test(val), message: 'Only letters, numbers, spaces and common punctuation allowed' }
+        ],
+        
+        collegeRollNumber: [
+            { test: (val) => val.length > 0, message: 'College Roll Number/PRN is required' },
+            { test: (val) => /^[a-zA-Z0-9/-]+$/.test(val), message: 'Only letters, numbers, hyphens and forward slashes allowed' },
+            { test: (val) => val.length >= 3, message: 'Must be at least 3 characters' }
+        ],
+        
+        collegeJoiningYear: [
+            { test: (val) => val.length > 0, message: 'College joining year is required' }
+        ],
+        
+        collegeAddress: [
+            { test: (val) => val.length > 0, message: 'College address is required' },
+            { test: (val) => val.length >= 10, message: 'Address must be at least 10 characters' },
+            { test: (val) => val.length <= 200, message: 'Address cannot exceed 200 characters' }
+        ],
+        
+        sportsCoordinator: [
+            { test: (val) => val === '' || /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' }
+        ],
+        
+        hostelResident: [
+            { test: (val) => val.length > 0, message: 'Hostel resident status is required' }
+        ],
+        
+        collegeSportsAchievements: [
+            { test: (val) => val === '' || val.length <= 300, message: 'Cannot exceed 300 characters' }
+        ]
+    };
 
-                // Check terms and conditions
-                if (!$('#terms').is(':checked')) {
-                    $('#termsError').text('You must accept the terms and conditions').show();
-                    isValid = false;
-                }
+    // File validation function
+    function validateFile(fieldId, fileTypes, maxSizeMB, required = false) {
+        const fileInput = $('#' + fieldId)[0];
+        const errorDiv = $('#' + fieldId + 'Error');
+        
+        if (!fileInput.files || fileInput.files.length === 0) {
+            if (required) {
+                errorDiv.text('File upload is required').show();
+                return false;
+            }
+            errorDiv.hide();
+            return true;
+        }
+        
+        const file = fileInput.files[0];
+        
+        // Check file type
+        const fileExtension = file.name.split('.').pop().toLowerCase();
+        if (!fileTypes.includes(fileExtension)) {
+            errorDiv.text(`Only ${fileTypes.join(', ').toUpperCase()} files are allowed`).show();
+            return false;
+        }
+        
+        // Check file size (convert MB to bytes)
+        const maxSizeBytes = maxSizeMB * 1024 * 1024;
+        if (file.size > maxSizeBytes) {
+            errorDiv.text(`File size must be less than ${maxSizeMB}MB`).show();
+            return false;
+        }
+        
+        errorDiv.hide();
+        return true;
+    }
 
-                if (!$('#consent').is(':checked')) {
-                    $('#consentError').text('You must provide consent to proceed').show();
-                    isValid = false;
-                }
-
-                if (isValid) {
-                    // Show loading
-                    $('#submitBtn').prop('disabled', true);
-                    $('#loading').show();
-                    
-                    // Simulate form submission
-                    setTimeout(function() {
-                        $('#loading').hide();
-                        $('#submitBtn').prop('disabled', false);
-                        $('#successMessage').show();
-                        $('html, body').animate({scrollTop: 0}, 500);
-                        $('#registrationForm')[0].reset();
-                        $('.file-upload-label').each(function() {
-                            $(this).text($(this).data('original-text')).removeClass('has-file');
-                        });
-                        $('#photoPreview').hide();
-                    }, 2000);
-                }
-            });
-
-            // Format Aadhar number input
-            $('#aadharNumber').on('input', function() {
-                let value = $(this).val().replace(/\s/g, '');
-                if (value.length > 0) {
-                    value = value.match(/.{1,4}/g).join(' ');
-                }
-                $(this).val(value);
-            });
-
-            // Auto-format date input
-            $('#dob').on('input', function() {
-                let value = $(this).val().replace(/\D/g, '');
-                if (value.length >= 2) {
-                    value = value.substring(0,2) + '/' + value.substring(2);
-                }
-                if (value.length >= 5) {
-                    value = value.substring(0,5) + '/' + value.substring(5,9);
-                }
-                $(this).val(value);
-            });
-
-            // Mobile number validation
-            $('#mobileNumber, #alternateContact').on('input', function() {
-                $(this).val($(this).val().replace(/\D/g, '').substring(0,10));
-            });
+    // Real-time validation for text fields
+    Object.keys(validationRules).forEach(fieldId => {
+        $('#' + fieldId).on('blur', function() {
+            validateField(fieldId, validationRules[fieldId]);
         });
+    });
+
+    // File upload validation
+    const fileValidations = {
+        uploadPhoto: { types: ['jpg', 'jpeg', 'png'], maxSize: 2, required: true },
+        sportsCertificate: { types: ['pdf'], maxSize: 5, required: false },
+        fitnessCertificate: { types: ['pdf'], maxSize: 5, required: false },
+        collegeId: { types: ['pdf', 'jpg', 'jpeg', 'png'], maxSize: 3, required: false },
+        birthCertificate: { types: ['pdf'], maxSize: 3, required: true },
+        aadharCard: { types: ['pdf'], maxSize: 3, required: true },
+        casteCertificate: { types: ['pdf'], maxSize: 3, required: false },
+        domicileCertificate: { types: ['pdf'], maxSize: 3, required: false },
+        incomeCertificate: { types: ['pdf'], maxSize: 3, required: false },
+        medicalCertificate: { types: ['pdf'], maxSize: 3, required: false }
+    };
+
+    // Apply file validation on change
+    Object.keys(fileValidations).forEach(fieldId => {
+        $('#' + fieldId).on('change', function() {
+            const validation = fileValidations[fieldId];
+            validateFile(fieldId, validation.types, validation.maxSize, validation.required);
+        });
+    });
+
+    // Input formatting and restrictions
+    
+    // Format Aadhar number input
+    $('#aadharNumber').on('input', function() {
+        let value = $(this).val().replace(/\s/g, '').replace(/\D/g, '');
+        if (value.length > 12) value = value.substring(0, 12);
+        if (value.length > 0) {
+            value = value.match(/.{1,4}/g).join(' ');
+        }
+        $(this).val(value);
+    });
+
+    // Auto-format date input with validation
+    $('#dob').on('input', function() {
+        let value = $(this).val().replace(/\D/g, '');
+        if (value.length > 8) value = value.substring(0, 8);
+        
+        if (value.length >= 2) {
+            value = value.substring(0,2) + '/' + value.substring(2);
+        }
+        if (value.length >= 5) {
+            value = value.substring(0,5) + '/' + value.substring(5,9);
+        }
+        $(this).val(value);
+    });
+
+    // Mobile number validation and formatting
+    $('#mobileNumber, #alternateContact').on('input', function() {
+        let value = $(this).val().replace(/\D/g, '');
+        if (value.length > 10) value = value.substring(0, 10);
+        $(this).val(value);
+    });
+
+    // Restrict numeric inputs
+    $('#height, #weight').on('input', function() {
+        let value = $(this).val().replace(/[^0-9.]/g, '');
+        // Allow only one decimal point
+        const parts = value.split('.');
+        if (parts.length > 2) {
+            value = parts[0] + '.' + parts.slice(1).join('');
+        }
+        $(this).val(value);
+    });
+
+    // Pincode validation
+    $('#pincode').on('input', function() {
+        let value = $(this).val().replace(/\D/g, '');
+        if (value.length > 6) value = value.substring(0, 6);
+        $(this).val(value);
+    });
+
+    // Name fields - only letters and spaces
+    $('#fullName, #fatherName, #motherName, #motherTongue, #district, #state, #favoriteSportsperson, #coachName, #sportsCoordinator').on('input', function() {
+        $(this).val($(this).val().replace(/[^a-zA-Z\s.]/g, ''));
+    });
+
+    // Position field - letters, spaces, hyphens, slashes
+    $('#position').on('input', function() {
+        $(this).val($(this).val().replace(/[^a-zA-Z\s/-]/g, ''));
+    });
+
+    // Sports participated - letters, numbers, spaces, commas, dots, hyphens
+    $('#sportsParticipated, #preferredVenue').on('input', function() {
+        $(this).val($(this).val().replace(/[^a-zA-Z0-9\s,.-]/g, ''));
+    });
+
+    // College roll number - letters, numbers, hyphens, slashes
+    $('#collegeRollNumber').on('input', function() {
+        $(this).val($(this).val().replace(/[^a-zA-Z0-9/-]/g, ''));
+    });
+
+    // Enhanced form submission with comprehensive validation
+    $('#registrationForm').submit(function(e) {
+        e.preventDefault();
+        
+        let isValid = true;
+        let firstErrorField = null;
+        
+        // Clear all previous errors
+        $('.input-error').removeClass('input-error');
+        $('.error').hide();
+        
+        // Validate all text fields
+        Object.keys(validationRules).forEach(fieldId => {
+            if (!validateField(fieldId, validationRules[fieldId])) {
+                isValid = false;
+                if (!firstErrorField) firstErrorField = $('#' + fieldId);
+            }
+        });
+
+        // Validate all file uploads
+        Object.keys(fileValidations).forEach(fieldId => {
+            const validation = fileValidations[fieldId];
+            if (!validateFile(fieldId, validation.types, validation.maxSize, validation.required)) {
+                isValid = false;
+                if (!firstErrorField) firstErrorField = $('#' + fieldId);
+            }
+        });
+
+        // Check required select fields
+        $('select[required]').each(function() {
+            if (!$(this).val() || $(this).val() === '') {
+                $(this).addClass('input-error');
+                $('#' + $(this).attr('id') + 'Error').text('This field is required').show();
+                isValid = false;
+                if (!firstErrorField) firstErrorField = $(this);
+            }
+        });
+
+        // Check terms and conditions
+        if (!$('#terms').is(':checked')) {
+            $('#termsError').text('You must accept the terms and conditions').show();
+            isValid = false;
+            if (!firstErrorField) firstErrorField = $('#terms');
+        }
+
+        if (!$('#consent').is(':checked')) {
+            $('#consentError').text('You must provide consent to proceed').show();
+            isValid = false;
+            if (!firstErrorField) firstErrorField = $('#consent');
+        }
+
+        if (isValid) {
+            // Show loading
+            $('#submitBtn').prop('disabled', true).text('Submitting...');
+            $('#loading').show();
+            
+            // Simulate form submission
+            setTimeout(function() {
+                $('#loading').hide();
+                $('#submitBtn').prop('disabled', false).text('Submit Registration');
+                $('#successMessage').show();
+                $('html, body').animate({scrollTop: 0}, 500);
+                
+                // Reset form
+                $('#registrationForm')[0].reset();
+                $('.file-upload-label').each(function() {
+                    $(this).text($(this).data('original-text')).removeClass('has-file');
+                });
+                $('#photoPreview').hide();
+                $('#passwordStrengthBar').removeClass('strength-weak strength-fair strength-good strength-strong');
+            }, 2000);
+        } else {
+            // Scroll to first error field
+            if (firstErrorField) {
+                $('html, body').animate({
+                    scrollTop: firstErrorField.offset().top - 100
+                }, 500);
+                firstErrorField.focus();
+            }
+        }
+        
+        return false;
+    });
+
+    // Additional validation on password change for confirm password
+    $('#password').on('input', function() {
+        if ($('#confirmPassword').val()) {
+            validateField('confirmPassword', validationRules.confirmPassword);
+        }
+    });
+
+    // Prevent form submission on Enter key for better UX
+    $('#registrationForm input').on('keypress', function(e) {
+        if (e.which === 13 && $(this).attr('type') !== 'submit') {
+            e.preventDefault();
+            $(this).blur();
+            const inputs = $('#registrationForm input, #registrationForm select, #registrationForm textarea');
+            const index = inputs.index(this);
+            if (index < inputs.length - 1) {
+                inputs.eq(index + 1).focus();
+            }
+        }
+    });
+});
     </script>
 </body>
 </html>
