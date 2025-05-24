@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Upcoming sports events organized by the Sports Department of India.">
-    <meta name="keywords" content="sports events, India, athletics, swimming, football, wrestling, table tennis, archery">
+    <meta name="description" content="Explore upcoming, ongoing, and past sports events organized by the Sports Department of India.">
+    <meta name="keywords" content="sports events, India, tournaments, championships, sports festivals">
     <meta name="author" content="Sports Department of India">
-    <link rel="website icon" type="jpg" href="logo1.jpg">
     <title>Events - Sports Department of India</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
@@ -126,41 +125,72 @@
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
         }
 
-        .events-list {
+        .event-filter {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background-color: #ddd;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
-        .event-item {
+        .event-card {
             background-color: white;
             border-radius: 8px;
-            padding: 1.5rem;
+            overflow: hidden;
             box-shadow: var(--shadow);
-            border-left: 4px solid var(--primary-color);
             transition: var(--transition);
-        }
-
-        .event-item:hover {
-            transform: scale(1.03);
-        }
-
-        .event-date {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-
-        .event-location {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .event-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-content .event-date {
+            font-style: italic;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-brief {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
             color: var(--text-color);
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
         }
 
         .btn {
@@ -174,7 +204,8 @@
             font-weight: 600;
             transition: var(--transition);
             cursor: pointer;
-            margin-top: 1rem;
+            align-self: flex-start;
+            margin-right: 0.5rem;
         }
 
         .btn:hover {
@@ -182,62 +213,27 @@
             transform: translateY(-3px);
         }
 
-        .event-filter {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background-color: var(--light-color);
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .filter-btn.active, .filter-btn:hover {
+        .btn-secondary {
             background-color: var(--accent-color);
-            color: white;
         }
 
-        .event-search {
-            margin-bottom: 2rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
         }
 
-        .event-search input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .countdown-timer {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
+        .highlight-section {
+            margin-top: 3rem;
+            padding: 2rem;
             background-color: white;
             border-radius: 8px;
             box-shadow: var(--shadow);
         }
 
-        .countdown-timer h3 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .countdown-timer p {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary-color);
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         footer {
@@ -385,9 +381,9 @@
                 border-bottom: 1px solid #eee;
             }
 
-            .event-filter {
-                flex-direction: column;
-                align-items: center;
+            .filter-btn {
+                margin: 0.25rem;
+                padding: 0.5rem 0.75rem;
             }
         }
 
@@ -402,10 +398,6 @@
 
             .section-title {
                 font-size: 1.5rem;
-            }
-
-            .countdown-timer p {
-                font-size: 1rem;
             }
         }
     </style>
@@ -432,78 +424,92 @@
     </header>
 
     <main>
-        <section class="upcoming-events">
-            <h2 class="section-title">Upcoming Events</h2>
-            <div class="countdown-timer">
-                <h3>Countdown to National Swimming Championship</h3>
-                <p id="countdown">Calculating...</p>
-            </div>
-            <div class="event-search">
-                <input type="text" id="eventSearch" placeholder="Search events..." class="form-control">
-            </div>
+        <section class="events-section">
+            <h2 class="section-title">Sports Events</h2>
             <div class="event-filter">
-                <button class="filter-btn active" data-category="all">All</button>
-                <button class="filter-btn" data-category="swimming">Swimming</button>
-                <button class="filter-btn" data-category="athletics">Athletics</button>
-                <button class="filter-btn" data-category="football">Football</button>
-                <button class="filter-btn" data-category="wrestling">Wrestling</button>
-                <button class="filter-btn" data-category="table-tennis">Table Tennis</button>
-                <button class="filter-btn" data-category="archery">Archery</button>
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                <button class="filter-btn" data-filter="ongoing">Ongoing</button>
+                <button class="filter-btn" data-filter="past">Past</button>
             </div>
-            <div class="events-list" id="eventsList">
-                <div class="event-item" data-category="swimming">
-                    <span class="event-date">May 15-22, 2025</span>
-                    <h3>National Swimming Championship</h3>
-                    <p>Annual national swimming competition featuring top swimmers from across the country.</p>
-                    <div class="event-location">
-                        <span>📍</span> Delhi Swimming Complex, New Delhi
+            <div class="events-grid" id="eventsGrid">
+                <div class="event-card" data-category="upcoming">
+                    <div class="event-content">
+                        <h3>National Sports Festival</h3>
+                        <p class="event-date">June 15-20, 2025</p>
+                        <p class="event-brief">Experience the vibrant National Sports Festival, featuring top athletes competing in athletics, swimming, and team sports across iconic venues in New Delhi.</p>
+                        <p>A week-long celebration of sports with competitions across multiple disciplines.</p>
+                        <div>
+                            <a href="#" class="btn">View Details</a>
+                            <a href="registration.html" class="btn btn-secondary">Register</a>
+                        </div>
                     </div>
-                    <a href="registration.html" class="btn">Register Now</a>
                 </div>
-                <div class="event-item" data-category="athletics">
-                    <span class="event-date">June 5-12, 2025</span>
-                    <h3>Junior Athletics Meet</h3>
-                    <p>National junior athletics competition for under-18 athletes in track and field events.</p>
-                    <div class="event-location">
-                        <span>📍</span> Jawaharlal Nehru Stadium, Chennai
+                <div class="event-card" data-category="ongoing">
+                    <div class="event-content">
+                        <h3>Inter-State Championship</h3>
+                        <p class="event-date">May 20-30, 2025</p>
+                        <p class="event-brief">Witness fierce competition at the Inter-State Championship, where state teams battle in cricket, hockey, and kabaddi for national supremacy.</p>
+                        <p>Top athletes from each state compete for national glory.</p>
+                        <div>
+                            <a href="#" class="btn">View Details</a>
+                            <a href="registration.html" class="btn btn-secondary">Register</a>
+                        </div>
                     </div>
-                    <a href="registration.html" class="btn">Register Now</a>
                 </div>
-                <div class="event-item" data-category="football">
-                    <span class="event-date">July 1-10, 2025</span>
-                    <h3>All India Football Tournament</h3>
-                    <p>Inter-state football tournament with participation from all major states and territories.</p>
-                    <div class="event-location">
-                        <span>📍</span> Salt Lake Stadium, Kolkata
+                <div class="event-card" data-category="past">
+                    <div class="event-content">
+                        <h3>Youth Athletics Meet</h3>
+                        <p class="event-date">April 10-12, 2025</p>
+                        <p class="event-brief">The Youth Athletics Meet showcased emerging talent in track and field, fostering the next generation of Indian sports stars.</p>
+                        <p>A platform for young athletes to showcase their talent.</p>
+                        <div>
+                            <a href="#" class="btn">View Details</a>
+                            <a href="registration.html" class="btn btn-secondary">Register</a>
+                        </div>
                     </div>
-                    <a href="registration.html" class="btn">Register Now</a>
                 </div>
-                <div class="event-item" data-category="wrestling">
-                    <span class="event-date">July 20-25, 2025</span>
-                    <h3>National Wrestling Championship</h3>
-                    <p>Premier wrestling event showcasing top wrestlers in freestyle and Greco-Roman styles.</p>
-                    <div class="event-location">
-                        <span>📍</span> Indira Gandhi Indoor Stadium, New Delhi
+                <div class="event-card" data-category="upcoming">
+                    <div class="event-content">
+                        <h3>Para Sports Championship</h3>
+                        <p class="event-date">July 5-8, 2025</p>
+                        <p class="event-brief">Celebrate inclusivity at the Para Sports Championship, featuring inspiring performances in wheelchair basketball, para-athletics, and more.</p>
+                        <p>Inclusive sports event for differently-abled athletes.</p>
+                        <div>
+                            <a href="#" class="btn">View Details</a>
+                            <a href="registration.html" class="btn btn-secondary">Register</a>
+                        </div>
                     </div>
-                    <a href="registration.html" class="btn">Register Now</a>
                 </div>
-                <div class="event-item" data-category="table-tennis">
-                    <span class="event-date">August 10-15, 2025</span>
-                    <h3>All India Table Tennis Open</h3>
-                    <p>National table tennis tournament featuring singles and doubles competitions.</p>
-                    <div class="event-location">
-                        <span>📍</span> Balewadi Sports Complex, Pune
+            </div>
+        </section>
+
+        <section class="highlight-section">
+            <h2 class="section-title">Event Highlights</h2>
+            <div class="highlight-grid">
+                <div class="event-card">
+                    <div class="event-content">
+                        <h3>National Marathon</h3>
+                        <p class="event-brief">The National Marathon unites runners of all levels, winding through historic city routes and promoting fitness nationwide.</p>
+                        <p>Join thousands of runners in the annual marathon across major cities.</p>
+                        <a href="#" class="btn">Learn More</a>
                     </div>
-                    <a href="registration.html" class="btn">Register Now</a>
                 </div>
-                <div class="event-item" data-category="archery">
-                    <span class="event-date">August 25-30, 2025</span>
-                    <h3>National Archery Championship</h3>
-                    <p>Top archers compete in recurve and compound categories for national honors.</p>
-                    <div class="event-location">
-                        <span>📍</span> JRD Tata Sports Complex, Jamshedpur
+                <div class="event-card">
+                    <div class="event-content">
+                        <h3>Cricket Premier League</h3>
+                        <p class="event-brief">The Cricket Premier League brings high-energy matches, featuring top domestic players vying for the championship title.</p>
+                        <p>Watch top cricket talent compete in this thrilling tournament.</p>
+                        <a href="#" class="btn">Learn More</a>
                     </div>
-                    <a href="registration.html" class="btn">Register Now</a>
+                </div>
+                <div class="event-card">
+                    <div class="event-content">
+                        <h3>Women’s Sports Summit</h3>
+                        <p class="event-brief">The Women’s Sports Summit empowers female athletes through competitions, leadership workshops, and networking events.</p>
+                        <p>Celebrating and promoting women in sports with workshops and competitions.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -635,38 +641,24 @@
 
         // Event Filter
         const filterButtons = document.querySelectorAll('.filter-btn');
-        const eventItems = document.querySelectorAll('.event-item');
+        const eventCards = document.querySelectorAll('.event-card');
+
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                const category = button.getAttribute('data-category');
-                eventItems.forEach(item => {
-                    if (category === 'all' || item.getAttribute('data-category') === category) {
-                        item.style.display = 'block';
+
+                const filter = button.getAttribute('data-filter');
+                eventCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || filter === category) {
+                        card.style.display = 'block';
                     } else {
-                        item.style.display = 'none';
+                        card.style.display = 'none';
                     }
                 });
             });
         });
-
-        // Event Search
-        const searchInput = document.getElementById('eventSearch');
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            eventItems.forEach(item => {
-                const title = item.querySelector('h3').textContent.toLowerCase();
-                const location = item.querySelector('.event-location').textContent.toLowerCase();
-                if (title.includes(query) || location.includes(query)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-
-        
     </script>
 </body>
 </html>
