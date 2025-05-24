@@ -126,52 +126,170 @@
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
         }
 
-        .latest-news {
-            padding: 3rem 0;
+        .breaking-news {
+            background: linear-gradient(45deg, #dc3545, #ff6b6b);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+        }
+
+        .featured-section {
             background-color: white;
             border-radius: 8px;
             box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-main {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .featured-main img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem;
+        }
+
+        .featured-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sidebar-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-left: 4px solid var(--primary-color);
+            background-color: var(--light-color);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .sidebar-item img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .live-scoreboard {
+            background: linear-gradient(135deg, var(--accent-color), #4169E1);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .match-score {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .team {
+            text-align: center;
+        }
+
+        .score {
+            font-size: 2rem;
+            font-weight: bold;
         }
 
         .news-container {
-            display: flex;
-            overflow-x: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
-            padding: 1rem;
-            scroll-behavior: smooth;
+            margin-bottom: 2rem;
         }
 
         .news-card {
-            flex: 0 0 300px;
-            background-color: var(--light-color);
+            background-color: white;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
         }
 
         .news-img {
-            height: 160px;
+            height: 200px;
             width: 100%;
             object-fit: cover;
         }
 
         .news-content {
-            padding: 1rem;
+            padding: 1.5rem;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .news-date {
-            color: var(--primary-color);
+            color: var(--secondary-color);
             font-size: 0.85rem;
         }
 
         .news-title {
             margin: 0.5rem 0;
             color: var(--accent-color);
+            font-size: 1.1rem;
         }
 
         .news-excerpt {
             font-size: 0.9rem;
             margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .news-quote {
+            font-style: italic;
+            color: var(--secondary-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin: 1rem 0;
         }
 
         .btn {
@@ -189,7 +307,7 @@
 
         .btn:hover {
             background-color: var(--secondary-color);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
         .news-filter {
@@ -205,7 +323,7 @@
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
             padding: 0.5rem 1rem;
-            border-radius: 4px;
+            border-radius: 20px;
             cursor: pointer;
             transition: var(--transition);
         }
@@ -226,19 +344,15 @@
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 25px;
             font-size: 1rem;
-        }
-
-        .load-more {
-            text-align: center;
-            margin-top: 2rem;
+            padding-left: 2rem;
         }
 
         .social-share {
             display: flex;
             gap: 0.5rem;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
         }
 
         .share-icon {
@@ -252,10 +366,191 @@
             border-radius: 50%;
             text-decoration: none;
             font-size: 0.9rem;
+            transition: var(--transition);
         }
 
         .share-icon:hover {
             background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .upcoming-events {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .event-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .event-date {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .player-profiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .player-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .player-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .player-info {
+            padding: 1.5rem;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .stats-table {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .stats-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .stats-table th {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .stats-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stats-table tr:hover {
+            background-color: var(--light-color);
+        }
+
+        .comments-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+
+        .comment {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 1rem;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .fan-zone {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .poll-option {
+            background-color: rgba(255,255,255,0.1);
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .poll-option:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         footer {
@@ -303,7 +598,7 @@
         }
 
         .footer-links a:hover {
-            color: orange;
+            color: var(--primary-color);
             padding-left: 5px;
         }
 
@@ -402,6 +697,22 @@
                 padding: 1rem;
                 border-bottom: 1px solid #eee;
             }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-container {
+                grid-template-columns: 1fr;
+            }
+
+            .player-profiles {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
         }
 
         @media (max-width: 576px) {
@@ -446,78 +757,333 @@
     </header>
 
     <main>
+        <!-- Breaking News -->
+        <div class="breaking-news">
+            <h3>🚨 BREAKING: India wins Gold in Badminton World Championship 2025! Congratulations to P.V. Sindhu! 🏆</h3>
+        </div>
+
+        <!-- Live Scoreboard -->
+        <div class="live-scoreboard">
+            <h3>🔴 Live Match Updates</h3>
+            <div class="match-score">
+                <div class="team">
+                    <div>India</div>
+                    <div class="score">2</div>
+                </div>
+                <div>vs</div>
+                <div class="team">
+                    <div>Australia</div>
+                    <div class="score">1</div>
+                </div>
+            </div>
+            <p>🏑 Hockey World Cup Final - Live in Chennai • 2nd Half: 35 min</p>
+        </div>
+
+        <!-- Featured Stories -->
+        <section class="featured-section">
+            <h2 class="section-title">Top Stories</h2>
+            <div class="featured-grid">
+                <div class="featured-main">
+                    <img src="https://via.placeholder.com/600x300?text=Featured+Story" alt="Featured Story">
+                    <div class="featured-overlay">
+                        <h3>India Dominates Asian Games 2025</h3>
+                        <p>Historic performance with 150+ medals including 45 golds. Our athletes have made the nation proud with exceptional performances across all sporting disciplines.</p>
+                    </div>
+                </div>
+                <div class="featured-sidebar">
+                    <div class="sidebar-item">
+                        <img src="https://via.placeholder.com/80x60?text=News" alt="News">
+                        <div>
+                            <h4>New Cricket Academy Opens</h4>
+                            <p>State-of-the-art facility in Mumbai</p>
+                        </div>
+                    </div>
+                    <div class="sidebar-item">
+                        <img src="https://via.placeholder.com/80x60?text=News" alt="News">
+                        <div>
+                            <h4>Olympic Preparation Camp</h4>
+                            <p>Athletes gear up for Paris 2024</p>
+                        </div>
+                    </div>
+                    <div class="sidebar-item">
+                        <img src="https://via.placeholder.com/80x60?text=News" alt="News">
+                        <div>
+                            <h4>Women's Hockey Victory</h4>
+                            <p>Beats Netherlands 3-1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
         <section class="latest-news">
             <h2 class="section-title">Latest News</h2>
             <div class="news-search">
-                <input type="text" id="newsSearch" placeholder="Search news..." class="form-control">
+                <input type="text" id="newsSearch" placeholder="🔍 Search news..." class="form-control">
             </div>
             <div class="news-filter">
                 <button class="filter-btn active" data-category="all">All</button>
                 <button class="filter-btn" data-category="cricket">Cricket</button>
                 <button class="filter-btn" data-category="hockey">Hockey</button>
                 <button class="filter-btn" data-category="badminton">Badminton</button>
+                <button class="filter-btn" data-category="athletics">Athletics</button>
+                <button class="filter-btn" data-category="olympics">Olympics</button>
                 <button class="filter-btn" data-category="general">General</button>
             </div>
             <div class="news-container" id="newsContainer">
-                <div class="news-card" data-category="general">
-                    <img src="sports budget.jpg" alt="News 1" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
-                    <div class="news-content">
-                        <span class="news-date">May 5, 2025</span>
-                        <h3 class="news-title">National Sports Budget Increased</h3>
-                        <p class="news-excerpt">Government increases sports budget by 25% to boost infrastructure and athlete development.</p>
-                        <a href="#" class="btn">Read More</a>
-                        <div class="social-share">
-                            <a href="#" class="share-icon" aria-label="Share on Facebook">f</a>
-                            <a href="#" class="share-icon" aria-label="Share on X">X</a>
-                            <a href="#" class="share-icon" aria-label="Share on LinkedIn">in</a>
-                        </div>
+                <!-- News cards will be populated by JavaScript -->
+            </div>
+            <div class="load-more">
+                <button id="loadMoreBtn" class="btn">Load More News</button>
+            </div>
+        </section>
+
+        <!-- Upcoming Events -->
+        <section class="upcoming-events">
+            <h2 class="section-title">Upcoming Events & Fixtures</h2>
+            <div class="event-item">
+                <div class="event-date">
+                    <div>MAY</div>
+                    <div style="font-size: 1.5rem; font-weight: bold;">28</div>
+                </div>
+                <div>
+                    <h4>🏏 India vs England ODI Series</h4>
+                    <p>📍 Wankhede Stadium, Mumbai • 🕐 2:30 PM IST</p>
+                </div>
+            </div>
+            <div class="event-item">
+                <div class="event-date">
+                    <div>JUN</div>
+                    <div style="font-size: 1.5rem; font-weight: bold;">02</div>
+                </div>
+                <div>
+                    <h4>🏑 Hockey World Championship</h4>
+                    <p>📍 Major Dhyan Chand Stadium, Delhi • 🕐 7:00 PM IST</p>
+                </div>
+            </div>
+            <div class="event-item">
+                <div class="event-date">
+                    <div>JUN</div>
+                    <div style="font-size: 1.5rem; font-weight: bold;">15</div>
+                </div>
+                <div>
+                    <h4>🏸 All India Badminton Tournament</h4>
+                    <p>📍 Siri Fort Sports Complex, Delhi • 🕐 10:00 AM IST</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Player Profiles -->
+        <section class="featured-section">
+            <h2 class="section-title">Featured Athletes</h2>
+            <div class="player-profiles">
+                <div class="player-card">
+                    <img src="https://via.placeholder.com/250x200?text=Virat+Kohli" alt="Virat Kohli" class="player-img">
+                    <div class="player-info">
+                        <h3>Virat Kohli</h3>
+                        <p><strong>Sport:</strong> Cricket</p>
+                        <p><strong>Achievements:</strong> Former Captain, 70+ International Centuries</p>
+                        <p>One of the greatest batsmen in cricket history, known for his aggressive style and consistency.</p>
                     </div>
                 </div>
-                <div class="news-card" data-category="general">
-                    <img src="young athlete training centre.jpg" alt="News 2" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
-                    <div class="news-content">
-                        <span class="news-date">May 3, 2025</span>
-                        <h3 class="news-title">Young Athletes Training Program</h3>
-                        <p class="news-excerpt">New national program launched to identify and nurture young sporting talent across India.</p>
-                        <a href="#" class="btn">Read More</a>
-                        <div class="social-share">
-                            <a href="#" class="share-icon" aria-label="Share on Facebook">f</a>
-                            <a href="#" class="share-icon" aria-label="Share on X">X</a>
-                            <a href="#" class="share-icon" aria-label="Share on LinkedIn">in</a>
-                        </div>
+                <div class="player-card">
+                    <img src="https://via.placeholder.com/250x200?text=PV+Sindhu" alt="PV Sindhu" class="player-img">
+                    <div class="player-info">
+                        <h3>P.V. Sindhu</h3>
+                        <p><strong>Sport:</strong> Badminton</p>
+                        <p><strong>Achievements:</strong> Olympic Silver Medalist, World Champion</p>
+                        <p>First Indian woman to win Olympic silver in badminton and World Championship gold.</p>
                     </div>
                 </div>
-                <div class="news-card" data-category="general">
-                    <img src="asian games.jpg" alt="News 3" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
-                    <div class="news-content">
-                        <span class="news-date">April 28, 2025</span>
-                        <h3 class="news-title">Asian Games Preparation</h3>
-                        <p class="news-excerpt">Indian contingent prepares for upcoming Asian Games with special training camps.</p>
-                        <a href="#" class="btn">Read More</a>
-                        <div class="social-share">
-                            <a href="#" class="share-icon" aria-label="Share on Facebook">f</a>
-                            <a href="#" class="share-icon" aria-label="Share on X">X</a>
-                            <a href="#" class="share-icon" aria-label="Share on LinkedIn">in</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="news-card" data-category="general">
-                    <img src="sports university.jpg" alt="News 4" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
-                    <div class="news-content">
-                        <span class="news-date">April 22, 2025</span>
-                        <h3 class="news-title">New Sports University</h3>
-                        <p class="news-excerpt">Foundation stone laid for state-of-the-art sports university in Maharashtra.</p>
-                        <a href="#" class="btn">Read More</a>
-                        <div class="social-share">
-                            <a href="#" class="share-icon" aria-label="Share on Facebook">f</a>
-                            <a href="#" class="share-icon" aria-label="Share on X">X</a>
-                            <a href="#" class="share-icon" aria-label="Share on LinkedIn">in</a>
-                        </div>
+                <div class="player-card">
+                    <img src="https://via.placeholder.com/250x200?text=Neeraj+Chopra" alt="Neeraj Chopra" class="player-img">
+                    <div class="player-info">
+                        <h3>Neeraj Chopra</h3>
+                        <p><strong>Sport:</strong> Athletics (Javelin)</p>
+                        <p><strong>Achievements:</strong> Olympic Gold Medalist, World Champion</p>
+                        <p>India's golden boy who brought home Olympic gold in javelin throw at Tokyo 2020.</p>
                     </div>
                 </div>
             </div>
-            <div class="load-more">
-                <button id="loadMoreBtn" class="btn">Load More</button>
+        </section>
+
+        <!-- Match Highlights & Videos -->
+        <section class="featured-section">
+            <h2 class="section-title">Match Highlights & Videos</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Match Highlights" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <h4>🏏 India vs Australia - Last Over Thriller</h4>
+            <p>Watch the incredible last over where India snatched victory from the jaws of defeat. Hardik Pandya's brilliant batting display under pressure!</p>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section class="featured-section">
+            <h2 class="section-title">Photo Gallery</h2>
+            <div class="photo-gallery">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/200x200?text=Cricket+Action" alt="Cricket Action">
+                    <div class="gallery-caption">Rohit Sharma's magnificent six in the final over</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/200x200?text=Hockey+Goal" alt="Hockey Goal">
+                    <div class="gallery-caption">Decisive goal in hockey world cup final</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/200x200?text=Badminton+Smash" alt="Badminton Smash">
+                    <div class="gallery-caption">Sindhu's powerful smash wins the point</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/200x200?text=Athletics+Victory" alt="Athletics Victory">
+                    <div class="gallery-caption">Neeraj Chopra celebrates javelin gold</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/200x200?text=Team+Celebration" alt="Team Celebration">
+                    <div class="gallery-caption">Indian team celebrates Asian Games triumph</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/200x200?text=Training+Session" alt="Training Session">
+                    <div class="gallery-caption">Intense training session at SAI center</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics & Records -->
+        <section class="stats-table">
+            <h2 class="section-title">Statistics & Records</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sport</th>
+                        <th>World Ranking</th>
+                        <th>Recent Medals</th>
+                        <th>Top Performer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🏏 Cricket</td>
+                        <td>#2 ODI, #1 Test</td>
+                        <td>Asia Cup Winners</td>
+                        <td>Virat Kohli</td>
+                    </tr>
+                    <tr>
+                        <td>🏑 Hockey (Men)</td>
+                        <td>#3 World</td>
+                        <td>Olympic Bronze</td>
+                        <td>Harmanpreet Singh</td>
+                    </tr>
+                    <tr>
+                        <td>🏸 Badminton</td>
+                        <td>#5 World</td>
+                        <td>World Championship Gold</td>
+                        <td>P.V. Sindhu</td>
+                    </tr>
+                    <tr>
+                        <td>🏃 Athletics</td>
+                        <td>#12 World</td>
+                        <td>Olympic Gold (Javelin)</td>
+                        <td>Neeraj Chopra</td>
+                    </tr>
+                    <tr>
+                        <td>🥊 Boxing</td>
+                        <td>#8 World</td>
+                        <td>Commonwealth Gold</td>
+                        <td>Nikhat Zareen</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Sports Department Announcements -->
+        <section class="featured-section">
+            <h2 class="section-title">Department Announcements</h2>
+            <div class="news-card">
+                <div class="news-content">
+                    <span class="news-tag">POLICY UPDATE</span>
+                    <span class="news-date">May 20, 2025</span>
+                    <h3 class="news-title">New Sports Development Policy 2025</h3>
+                    <p class="news-excerpt">The government has announced a comprehensive sports development policy focusing on grassroots development, infrastructure improvement, and athlete welfare. The policy includes increased funding for rural sports programs and establishment of 100 new sports academies across the country.</p>
+                    <div class="news-quote">"This policy will transform India into a sporting superpower by 2030" - Sports Minister</div>
+                    <a href="#" class="btn">Read Full Policy</a>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-content">
+                    <span class="news-tag">TRAINING PROGRAM</span>
+                    <span class="news-date">May 18, 2025</span>
+                    <h3 class="news-title">Elite Athlete Training Camp</h3>
+                    <p class="news-excerpt">A 6-month intensive training program has been launched for Olympic hopefuls. The camp will be conducted at the National Institute of Sports, Patiala, with international coaches and cutting-edge facilities.</p>
+                    <a href="#" class="btn">Apply Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Opinion & Analysis -->
+        <section class="featured-section">
+            <h2 class="section-title">Expert Opinion & Analysis</h2>
+            <div class="news-card">
+                <div class="news-content">
+                    <span class="news-tag">ANALYSIS</span>
+                    <span class="news-date">May 22, 2025</span>
+                    <h3 class="news-title">India's Olympic Prospects: A Detailed Analysis</h3>
+                    <p class="news-excerpt">As we approach the next Olympic cycle, India's medal prospects look brighter than ever. With strong performances in athletics, shooting, wrestling, and badminton, experts predict India could achieve its best-ever Olympic tally.</p>
+                    <div class="news-quote">"India has the potential to win 15+ medals in the next Olympics if we maintain this trajectory" - Former Olympic Coach Pullela Gopichand</div>
+                    <p class="news-excerpt">The key factors contributing to this optimism include improved training facilities, better sports science support, and increased government funding. However, challenges remain in developing depth across all sports disciplines.</p>
+                    <a href="#" class="btn">Read Full Analysis</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fan Zone -->
+        <section class="fan-zone">
+            <h2 class="section-title" style="color: white;">Fan Zone</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h3>🗳️ Poll: Who's Your Sports Hero of 2025?</h3>
+                    <div class="poll-option" onclick="vote('sindhu')">P.V. Sindhu (35%)</div>
+                    <div class="poll-option" onclick="vote('neeraj')">Neeraj Chopra (28%)</div>
+                    <div class="poll-option" onclick="vote('kohli')">Virat Kohli (25%)</div>
+                    <div class="poll-option" onclick="vote('other')">Others (12%)</div>
+                </div>
+                <div>
+                    <h3>🧠 Sports Quiz</h3>
+                    <p><strong>Q: Which Indian athlete won the first individual Olympic gold?</strong></p>
+                    <div class="poll-option" onclick="quiz('abhinav')">Abhinav Bindra ✓</div>
+                    <div class="poll-option" onclick="quiz('neeraj')">Neeraj Chopra</div>
+                    <div class="poll-option" onclick="quiz('sushil')">Sushil Kumar</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comments Section -->
+        <section class="comments-section">
+            <h2 class="section-title">Recent Comments</h2>
+            <div class="comment">
+                <div class="comment-author">Rajesh Kumar</div>
+                <div class="comment-date">2 hours ago</div>
+                <p>Fantastic performance by our hockey team! They're making India proud on the international stage. 🏑🇮🇳</p>
+            </div>
+            <div class="comment">
+                <div class="comment-author">Priya Sharma</div>
+                <div class="comment-date">4 hours ago</div>
+                <p>The new sports policy is exactly what we needed. Finally, grassroots development is getting the attention it deserves!</p>
+            </div>
+            <div class="comment">
+                <div class="comment-author">Arjun Patel</div>
+                <div class="comment-date">6 hours ago</div>
+                <p>Sindhu's performance has been incredible this year. She's truly an inspiration for young athletes across the country.</p>
+            </div>
+            <div style="margin-top: 2rem;">
+                <h4>Leave a Comment</h4>
+                <form id="commentForm">
+                    <div style="margin-bottom: 1rem;">
+                        <input type="text" placeholder="Your Name" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                        <textarea placeholder="Your Comment" rows="3" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Post Comment</button>
+                </form>
             </div>
         </section>
     </main>
@@ -556,14 +1122,15 @@
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Newsletter</h3>
-                <p>Subscribe to our newsletter to get the latest updates on sports events and news.</p>
-                <form id="newsletterForm" novalidate>
-                    <div class="form-group">
-                        <label for="newsletterEmail" class="visually-hidden">Email</label>
-                        <input type="email" id="newsletterEmail" placeholder="Enter your email" class="form-control" required aria-describedby="newsletterError">
-                        <span id="newsletterError" class="error">Please enter a valid email address.</span>
-                    </div>
+                <h3>Newsletter Archive</h3>
+                <ul class="footer-links">
+                    <li><a href="#">May 2025 Edition</a></li>
+                    <li><a href="#">April 2025 Edition</a></li>
+                    <li><a href="#">March 2025 Edition</a></li>
+                    <li><a href="#">February 2025 Edition</a></li>
+                </ul>
+                <form id="newsletterForm" style="margin-top: 1rem;">
+                    <input type="email" placeholder="Subscribe to newsletter" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border: none; border-radius: 4px;">
                     <button type="submit" class="btn">Subscribe</button>
                 </form>
             </div>
@@ -578,6 +1145,239 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script>
+        // News Articles Data
+        const newsArticles = [
+            {
+                id: 1,
+                title: "National Sports Budget Increased by 25%",
+                excerpt: "Government announces major increase in sports budget to boost infrastructure and athlete development programs across the country. The budget allocation will focus on grassroots development and training facilities.",
+                category: "general",
+                date: "May 24, 2025",
+                tag: "POLICY",
+                image: "https://via.placeholder.com/300x200?text=Sports+Budget",
+                quote: "This increase will help us identify and nurture talent from rural areas - Sports Minister"
+            },
+            {
+                id: 2,
+                title: "India Wins Historic Hockey World Cup",
+                excerpt: "After 48 years, India lifts the Hockey World Cup with a thrilling 3-2 victory over Australia in the final. The match went into overtime before India scored the winning goal.",
+                category: "hockey",
+                date: "May 23, 2025",
+                tag: "VICTORY",
+                image: "https://via.placeholder.com/300x200?text=Hockey+Victory",
+                quote: "This is the greatest moment of my career - Captain Harmanpreet Singh"
+            },
+            {
+                id: 3,
+                title: "P.V. Sindhu Wins Badminton World Championship",
+                excerpt: "P.V. Sindhu defeats Carolina Marin in straight sets to claim her second World Championship title. The victory comes after a dominant display throughout the tournament.",
+                category: "badminton",
+                date: "May 22, 2025",
+                tag: "WORLD CHAMPION",
+                image: "https://via.placeholder.com/300x200?text=Sindhu+Victory",
+                quote: "I dedicate this victory to all my supporters back home - P.V. Sindhu"
+            },
+            {
+                id: 4,
+                title: "New Cricket Academy Opens in Mumbai",
+                excerpt: "State-of-the-art cricket academy inaugurated in Mumbai with world-class facilities including indoor nets, biomechanics lab, and residential accommodation for 200 young cricketers.",
+                category: "cricket",
+                date: "May 21, 2025",
+                tag: "INFRASTRUCTURE",
+                image: "https://via.placeholder.com/300x200?text=Cricket+Academy",
+                quote: "This academy will produce the next generation of Indian cricket stars - BCCI President"
+            },
+            {
+                id: 5,
+                title: "Neeraj Chopra Breaks National Record",
+                excerpt: "Neeraj Chopra throws a massive 89.94m at the Diamond League meeting in Eugene, breaking his own national record and coming closest ever to the 90m barrier.",
+                category: "athletics",
+                date: "May 20, 2025",
+                tag: "RECORD",
+                image: "https://via.placeholder.com/300x200?text=Neeraj+Record",
+                quote: "The 90m barrier is definitely achievable this season - Neeraj Chopra"
+            },
+            {
+                id: 6,
+                title: "Asian Games 2025 Preparations Begin",
+                excerpt: "Indian Olympic Association announces comprehensive preparation plan for Asian Games 2025. Training camps to be held across multiple sports with international coaches.",
+                category: "general",
+                date: "May 19, 2025",
+                tag: "PREPARATION",
+                image: "https://via.placeholder.com/300x200?text=Asian+Games",
+                quote: "We are targeting 200+ medals at Asian Games 2025 - IOA President"
+            },
+            {
+                id: 7,
+                title: "Women's Hockey Team Reaches World Cup Final",
+                excerpt: "Indian women's hockey team creates history by reaching their first-ever World Cup final after defeating Argentina 3-1 in a nail-biting semifinal encounter.",
+                category: "hockey",
+                date: "May 18, 2025",
+                tag: "HISTORIC",
+                image: "https://via.placeholder.com/300x200?text=Women+Hockey",
+                quote: "The girls have shown incredible fighting spirit - Coach Janneke Schopman"
+            },
+            {
+                id: 8,
+                title: "IPL 2025 Breaks All Viewership Records",
+                excerpt: "The latest edition of IPL attracts record viewership of 600 million viewers globally, making it the most-watched cricket tournament in history.",
+                category: "cricket",
+                date: "May 17, 2025",
+                tag: "MILESTONE",
+                image: "https://via.placeholder.com/300x200?text=IPL+Record",
+                quote: "IPL continues to revolutionize cricket entertainment - IPL Chairman"
+            },
+            {
+                id: 9,
+                title: "Olympic Training Center Opens in Pune",
+                excerpt: "New Olympic training center in Pune equipped with altitude simulation chambers, recovery pools, and sports science laboratories to prepare athletes for international competitions.",
+                category: "olympics",
+                date: "May 16, 2025",
+                tag: "FACILITY",
+                image: "https://via.placeholder.com/300x200?text=Olympic+Center",
+                quote: "This facility will be a game-changer for our Olympic preparations - SAI Director"
+            },
+            {
+                id: 10,
+                title: "Kidambi Srikanth Returns to Top 10",
+                excerpt: "Former world number 1 Kidambi Srikanth makes a strong comeback by winning the Malaysia Open and returning to the world's top 10 badminton rankings.",
+                category: "badminton",
+                date: "May 15, 2025",
+                tag: "COMEBACK",
+                image: "https://via.placeholder.com/300x200?text=Srikanth+Return",
+                quote: "The hard work in training camps has finally paid off - Kidambi Srikanth"
+            },
+            {
+                id: 11,
+                title: "India Wins Track and Field Championship",
+                excerpt: "Indian athletics team dominates the Asian Track and Field Championship with 12 gold medals, including wins in sprints, jumps, and throws events.",
+                category: "athletics",
+                date: "May 14, 2025",
+                tag: "DOMINATION",
+                image: "https://via.placeholder.com/300x200?text=Athletics+Win",
+                quote: "Our athletes are peaking at the right time - Athletics Federation President"
+            },
+            {
+                id: 12,
+                title: "Virat Kohli Announces Retirement from T20Is",
+                excerpt: "Cricket legend Virat Kohli announces his retirement from T20 internationals to focus on Test and ODI cricket, ending a glorious chapter in Indian cricket.",
+                category: "cricket",
+                date: "May 13, 2025",
+                tag: "RETIREMENT",
+                image: "https://via.placeholder.com/300x200?text=Kohli+Retirement",
+                quote: "It's time for the next generation to take over T20 cricket - Virat Kohli"
+            },
+            {
+                id: 13,
+                title: "New Sports University Opens in Kerala",
+                excerpt: "Kerala Sports University becomes operational with courses in sports science, coaching, and management. The university aims to produce sports professionals and researchers.",
+                category: "general",
+                date: "May 12, 2025",
+                tag: "EDUCATION",
+                image: "https://via.placeholder.com/300x200?text=Sports+University",
+                quote: "Education and sports must go hand in hand - Kerala Sports Minister"
+            },
+            {
+                id: 14,
+                title: "Commonwealth Games 2026 Preparations",
+                excerpt: "India begins preparation for Commonwealth Games 2026 with selection trials and training camps. Target set for 100+ medals across various sporting disciplines.",
+                category: "general",
+                date: "May 11, 2025",
+                tag: "PREPARATION",
+                image: "https://via.placeholder.com/300x200?text=Commonwealth+Games",
+                quote: "We want to top the medal tally at Commonwealth Games 2026 - Sports Secretary"
+            },
+            {
+                id: 15,
+                title: "Boxing Academy Launches Women's Program",
+                excerpt: "National Boxing Academy launches dedicated women's boxing program with separate training facilities and female coaches to promote women's participation in boxing.",
+                category: "general",
+                date: "May 10, 2025",
+                tag: "WOMEN'S SPORTS",
+                image: "https://via.placeholder.com/300x200?text=Women+Boxing",
+                quote: "Boxing has no gender barriers - Mary Kom"
+            },
+            {
+                id: 16,
+                title: "Chess Grandmaster Wins World Rapid Championship",
+                excerpt: "Indian chess prodigy wins the World Rapid Chess Championship, continuing India's dominance in the mental sport and inspiring young chess players nationwide.",
+                category: "general",
+                date: "May 9, 2025",
+                tag: "WORLD CHAMPION",
+                image: "https://via.placeholder.com/300x200?text=Chess+Champion",
+                quote: "Chess is the new frontier for Indian sports excellence - Chess Federation President"
+            },
+            {
+                id: 17,
+                title: "Swimming Pool Complex Opens in Bhopal",
+                excerpt: "Olympic-standard swimming complex inaugurated in Bhopal with 50m pool, diving facility, and training programs for aspiring swimmers from central India.",
+                category: "general",
+                date: "May 8, 2025",
+                tag: "INFRASTRUCTURE",
+                image: "https://via.placeholder.com/300x200?text=Swimming+Complex",
+                quote: "This will boost swimming culture in central India - Swimming Federation"
+            },
+            {
+                id: 18,
+                title: "Football Academy Signs Partnership with Barcelona",
+                excerpt: "Indian football academy signs coaching partnership with FC Barcelona to bring world-class training methodologies to Indian young footballers.",
+                category: "general",
+                date: "May 7, 2025",
+                tag: "PARTNERSHIP",
+                image: "https://via.placeholder.com/300x200?text=Football+Partnership",
+                quote: "This partnership will elevate Indian football standards - AIFF President"
+            },
+            {
+                id: 19,
+                title: "Shooting World Cup: India Tops Medal Tally",
+                excerpt: "Indian shooters dominate the ISSF World Cup with 8 gold medals, showcasing exceptional precision and consistency across rifle, pistol, and shotgun events.",
+                category: "general",
+                date: "May 6, 2025",
+                tag: "SHOOTING",
+                image: "https://via.placeholder.com/300x200?text=Shooting+Success",
+                quote: "Our shooters are among the world's best - National Shooting Coach"
+            },
+            {
+                id: 20,
+                title: "Para-Athletics Team Wins 15 Medals",
+                excerpt: "Indian para-athletics team creates history at World Para Athletics Championship with 15 medals including 5 golds, showcasing determination and skill.",
+                category: "athletics",
+                date: "May 5, 2025",
+                tag: "PARA-SPORTS",
+                image: "https://via.placeholder.com/300x200?text=Para+Athletics",
+                quote: "These athletes are true champions and inspiration - Paralympic Committee"
+            }
+        ];
+
+        // Initialize news container
+        function initializeNews() {
+            const container = document.getElementById('newsContainer');
+            container.innerHTML = '';
+            
+            newsArticles.forEach(article => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'news-card';
+                newsCard.setAttribute('data-category', article.category);
+                newsCard.innerHTML = `
+                    <img src="${article.image}" alt="${article.title}" class="news-img" onerror="this.src='https://via.placeholder.com/300x200?text=News'">
+                    <div class="news-content">
+                        <span class="news-tag">${article.tag}</span>
+                        <span class="news-date">${article.date}</span>
+                        <h3 class="news-title">${article.title}</h3>
+                        <p class="news-excerpt">${article.excerpt}</p>
+                        ${article.quote ? `<div class="news-quote">"${article.quote}"</div>` : ''}
+                        <a href="#" class="btn" onclick="openNews(${article.id})">Read More</a>
+                        <div class="social-share">
+                            <a href="#" class="share-icon" aria-label="Share on Facebook" onclick="shareNews('facebook', ${article.id})">f</a>
+                            <a href="#" class="share-icon" aria-label="Share on X" onclick="shareNews('twitter', ${article.id})">X</a>
+                            <a href="#" class="share-icon" aria-label="Share on LinkedIn" onclick="shareNews('linkedin', ${article.id})">in</a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(newsCard);
+            });
+        }
+
         // Mobile Navigation Toggle
         const navToggle = document.querySelector('.nav-toggle');
         const nav = document.querySelector('nav');
@@ -611,49 +1411,31 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Newsletter Form Validation
-        const newsletterForm = document.getElementById('newsletterForm');
-        function validateEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-
-        function showError(input, errorElement, message) {
-            input.classList.add('invalid');
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-        }
-
-        function clearErrors(form) {
-            const inputs = form.querySelectorAll('.form-control');
-            const errors = form.querySelectorAll('.error');
-            inputs.forEach(input => input.classList.remove('invalid'));
-            errors.forEach(error => {
-                error.style.display = 'none';
-                error.textContent = '';
-            });
-        }
-
-        newsletterForm.addEventListener('submit', (e) => {
+        // Newsletter Form
+        document.getElementById('newsletterForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            clearErrors(newsletterForm);
-            const email = document.getElementById('newsletterEmail').value.trim();
-            if (!validateEmail(email)) {
-                showError(document.getElementById('newsletterEmail'), document.getElementById('newsletterError'), 'Please enter a valid email address.');
-                return;
-            }
-            console.log('Newsletter Subscribed:', { email });
-            alert('Thank you for subscribing to our newsletter!');
-            newsletterForm.reset();
+            const email = e.target.querySelector('input[type="email"]').value;
+            alert(`Thank you for subscribing with email: ${email}`);
+            e.target.reset();
+        });
+
+        // Comment Form
+        document.getElementById('commentForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = e.target.querySelector('input[type="text"]').value;
+            const comment = e.target.querySelector('textarea').value;
+            alert(`Comment posted by ${name}: ${comment}`);
+            e.target.reset();
         });
 
         // News Filter
         const filterButtons = document.querySelectorAll('.filter-btn');
-        const newsCards = document.querySelectorAll('.news-card');
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
                 const category = button.getAttribute('data-category');
+                const newsCards = document.querySelectorAll('.news-card');
                 newsCards.forEach(card => {
                     if (category === 'all' || card.getAttribute('data-category') === category) {
                         card.style.display = 'block';
@@ -668,6 +1450,7 @@
         const searchInput = document.getElementById('newsSearch');
         searchInput.addEventListener('input', () => {
             const query = searchInput.value.toLowerCase();
+            const newsCards = document.querySelectorAll('.news-card');
             newsCards.forEach(card => {
                 const title = card.querySelector('.news-title').textContent.toLowerCase();
                 const excerpt = card.querySelector('.news-excerpt').textContent.toLowerCase();
@@ -679,70 +1462,382 @@
             });
         });
 
-        // Load More News (Simulated)
+        // Load More News
+        let currentNewsCount = 12;
         const loadMoreBtn = document.getElementById('loadMoreBtn');
-        const newsContainer = document.getElementById('newsContainer');
         loadMoreBtn.addEventListener('click', () => {
-            const newNews = [
-                {
-                    date: 'April 15, 2025',
-                    title: 'New Cricket Academy Launched',
-                    excerpt: 'A state-of-the-art cricket academy opens in Bangalore to train future stars.',
-                    category: 'cricket',
-                    img: 'cricket_academy.jpg'
-                },
-                {
-                    date: 'April 10, 2025',
-                    title: 'Hockey Team Wins International Friendly',
-                    excerpt: 'Indian hockey team triumphs in a thrilling match against Australia.',
-                    category: 'hockey',
-                    img: 'hockey_match.jpg'
-                }
-            ];
-
-            newNews.forEach(news => {
-                const card = document.createElement('div');
-                card.className = 'news-card';
-                card.setAttribute('data-category', news.category);
-                card.innerHTML = `
-                    <img src="${news.img}" alt="${news.title}" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
-                    <div class="news-content">
-                        <span class="news-date">${news.date}</span>
-                        <h3 class="news-title">${news.title}</h3>
-                        <p class="news-excerpt">${news.excerpt}</p>
-                        <a href="#" class="btn">Read More</a>
-                        <div class="social-share">
-                            <a href="#" class="share-icon" aria-label="Share on Facebook">f</a>
-                            <a href="#" class="share-icon" aria-label="Share on X">X</a>
-                            <a href="#" class="share-icon" aria-label="Share on LinkedIn">in</a>
-                        </div>
-                    </div>
-                `;
-                newsContainer.appendChild(card);
-            });
-
-            // Simulate disabling button after loading (in a real app, check if more news exists)
-            loadMoreBtn.textContent = 'No More News';
-            loadMoreBtn.disabled = true;
+            const newsCards = document.querySelectorAll('.news-card');
+            for (let i = currentNewsCount; i < Math.min(currentNewsCount + 6, newsCards.length); i++) {
+                newsCards[i].style.display = 'block';
+            }
+            currentNewsCount += 6;
+            if (currentNewsCount >= newsCards.length) {
+                loadMoreBtn.style.display = 'none';
+            }
         });
 
-        // Handle image errors
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('error', () => {
-                if (!img.src.includes('via.placeholder.com')) {
-                    img.src = 'https://via.placeholder.com/150?text=Image+Not+Found';
+        // Fan Zone Functions
+        function vote(option) {
+            alert(`You voted for: ${option}. Thank you for participating!`);
+        }
+
+        function quiz(answer) {
+            if (answer === 'abhinav') {
+                alert('Correct! Abhinav Bindra won India\'s first individual Olympic gold in shooting at Beijing 2008.');
+            } else {
+                alert('Incorrect. The correct answer is Abhinav Bindra (Shooting, 2008).');
+            }
+        }
+
+        // Share News Function
+        function shareNews(platform, articleId) {
+            const article = newsArticles.find(a => a.id === articleId);
+            alert(`Sharing "${article.title}" on ${platform}`);
+        }
+
+        // Open News Function
+        function openNews(articleId) {
+            const article = newsArticles.find(a => a.id === articleId);
+            alert(`Opening full article: "${article.title}"`);
+        }
+
+        // Initially hide some news cards for load more functionality
+        function initializeLoadMore() {
+            const newsCards = document.querySelectorAll('.news-card');
+            newsCards.forEach((card, index) => {
+                if (index >= currentNewsCount) {
+                    card.style.display = 'none';
                 }
             });
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeNews();
+            initializeLoadMore();
         });
 
-        // Social Share (Simulated)
-        document.querySelectorAll('.share-icon').forEach(icon => {
-            icon.addEventListener('click', (e) => {
+        // Handle image errors - completion of the cut-off code
+        document.addEventListener('error', (e) => {
+            if (e.target.tagName === 'IMG' && !e.target.src.includes('via.placeholder.com')) {
+                e.target.src = 'https://via.placeholder.com/300x200?text=Image+Not+Found';
+            }
+        }, true);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const platform = e.target.getAttribute('aria-label').replace('Share on ', '');
-                alert(`Simulated sharing on ${platform}`);
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
+
+        // Auto-refresh live scores every 30 seconds
+        setInterval(() => {
+            const scoreElements = document.querySelectorAll('.score');
+            if (scoreElements.length > 0 && Math.random() > 0.7) {
+                // Randomly update scores occasionally
+                scoreElements.forEach(score => {
+                    const currentScore = parseInt(score.textContent);
+                    if (Math.random() > 0.8) {
+                        score.textContent = currentScore + 1;
+                    }
+                });
+            }
+        }, 30000);
+
+        // Breaking news ticker animation
+        const breakingNews = document.querySelector('.breaking-news h3');
+        if (breakingNews) {
+            let isScrolling = false;
+            
+            const animateBreakingNews = () => {
+                if (!isScrolling) {
+                    isScrolling = true;
+                    breakingNews.style.transform = 'translateX(-10px)';
+                    setTimeout(() => {
+                        breakingNews.style.transform = 'translateX(0)';
+                        isScrolling = false;
+                    }, 500);
+                }
+            };
+            
+            // Animate every 5 seconds
+            setInterval(animateBreakingNews, 5000);
+        }
+
+        // Lazy loading for images
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
+                }
+            });
+        });
+
+        // Observe all images with data-src attribute
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+
+        // Real-time visitor counter simulation
+        let visitorCount = 12847;
+        const updateVisitorCount = () => {
+            if (Math.random() > 0.3) {
+                visitorCount += Math.floor(Math.random() * 3) + 1;
+                const counterElement = document.getElementById('visitorCounter');
+                if (counterElement) {
+                    counterElement.textContent = visitorCount.toLocaleString();
+                }
+            }
+        };
+
+        // Update visitor count every 10 seconds
+        setInterval(updateVisitorCount, 10000);
+
+        // Weather widget for sports events
+        const updateWeather = () => {
+            const weatherElements = document.querySelectorAll('.weather-info');
+            const conditions = ['☀️ Sunny', '⛅ Partly Cloudy', '🌤️ Clear', '🌦️ Light Rain'];
+            const temperatures = ['28°C', '32°C', '25°C', '30°C'];
+            
+            weatherElements.forEach(element => {
+                const randomCondition = conditions[Math.floor(Math.random() * conditions.length)];
+                const randomTemp = temperatures[Math.floor(Math.random() * temperatures.length)];
+                element.textContent = `${randomCondition} ${randomTemp}`;
+            });
+        };
+
+        // Performance optimization: Debounce scroll events
+        let scrollTimeout;
+        const handleScroll = () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                // Scroll-based animations
+                const cards = document.querySelectorAll('.news-card, .player-card');
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 100) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            }, 10);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Initialize card animations
+        const initCardAnimations = () => {
+            const cards = document.querySelectorAll('.news-card, .player-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+        };
+
+        // Theme toggle functionality
+        const toggleTheme = () => {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        };
+
+        // Load saved theme
+        const loadTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+        };
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.textContent = '☰';
+            }
+        });
+
+        // Form validation enhancements
+        const validateEmail = (email) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        };
+
+        const validateForm = (form) => {
+            const inputs = form.querySelectorAll('input[required], textarea[required]');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.borderColor = '#dc3545';
+                    isValid = false;
+                } else if (input.type === 'email' && !validateEmail(input.value)) {
+                    input.style.borderColor = '#dc3545';
+                    isValid = false;
+                } else {
+                    input.style.borderColor = '#28a745';
+                }
+            });
+            
+            return isValid;
+        };
+
+        // Enhanced newsletter form with validation
+        document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (validateForm(e.target)) {
+                const email = e.target.querySelector('input[type="email"]').value;
+                // Simulate API call
+                const submitBtn = e.target.querySelector('button');
+                submitBtn.textContent = 'Subscribing...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert(`Thank you for subscribing! Confirmation sent to ${email}`);
+                    e.target.reset();
+                    submitBtn.textContent = 'Subscribe';
+                    submitBtn.disabled = false;
+                }, 1500);
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+
+        // Enhanced comment form with validation
+        document.getElementById('commentForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (validateForm(e.target)) {
+                const name = e.target.querySelector('input[type="text"]').value;
+                const comment = e.target.querySelector('textarea').value;
+                
+                // Create new comment element
+                const newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.style.backgroundColor = '#f8f9fa';
+                newComment.innerHTML = `
+                    <div class="comment-author">${name}</div>
+                    <div class="comment-date">Just now</div>
+                    <p>${comment}</p>
+                `;
+                
+                // Add to comments section
+                const commentsSection = document.querySelector('.comments-section');
+                const firstComment = commentsSection.querySelector('.comment');
+                commentsSection.insertBefore(newComment, firstComment);
+                
+                alert('Comment posted successfully!');
+                e.target.reset();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Print functionality
+        const printPage = () => {
+            window.print();
+        };
+
+        // Add print button to news articles
+        const addPrintButtons = () => {
+            const newsCards = document.querySelectorAll('.news-card');
+            newsCards.forEach(card => {
+                const printBtn = document.createElement('button');
+                printBtn.textContent = '🖨️ Print';
+                printBtn.className = 'btn btn-sm';
+                printBtn.style.marginLeft = '10px';
+                printBtn.onclick = printPage;
+                
+                const readMoreBtn = card.querySelector('.btn');
+                if (readMoreBtn) {
+                    readMoreBtn.parentNode.insertBefore(printBtn, readMoreBtn.nextSibling);
+                }
+            });
+        };
+
+        // Initialize all features when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeNews();
+            initializeLoadMore();
+            initCardAnimations();
+            loadTheme();
+            addPrintButtons();
+            updateWeather();
+            
+            // Trigger initial scroll handler
+            handleScroll();
+            
+            console.log('Sports Department News Page fully loaded and initialized');
+        });
+
+        // Service Worker registration for offline support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Analytics tracking simulation
+        const trackEvent = (eventName, eventData) => {
+            console.log(`Analytics Event: ${eventName}`, eventData);
+            // In a real implementation, this would send data to analytics service
+        };
+
+        // Track news article views
+        const trackNewsView = (articleId) => {
+            trackEvent('news_view', { article_id: articleId, timestamp: Date.now() });
+        };
+
+        // Track user engagement
+        let engagementTime = 0;
+        setInterval(() => {
+            engagementTime += 10;
+            if (engagementTime % 60 === 0) { // Every minute
+                trackEvent('engagement', { time_on_page: engagementTime });
+            }
+        }, 10000);
+
+        // Error handling and reporting
+        window.addEventListener('error', (e) => {
+            console.error('JavaScript Error:', e.error);
+            trackEvent('error', { 
+                message: e.error.message, 
+                filename: e.filename, 
+                lineno: e.lineno 
+            });
+        });
+
+        // Page visibility API for pause/resume functionality
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Pause animations and timers when page is not visible
+                trackEvent('page_hidden', { timestamp: Date.now() });
+            } else {
+                // Resume when page becomes visible
+                trackEvent('page_visible', { timestamp: Date.now() });
+            }
+        });
+
     </script>
 </body>
 </html>
