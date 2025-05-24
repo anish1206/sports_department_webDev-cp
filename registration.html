@@ -50,7 +50,6 @@
         }
 
         .header::before {
-          
             font-size: 3rem;
             position: absolute;
             top: 15px;
@@ -58,7 +57,6 @@
         }
 
         .header::after {
-           
             font-size: 3rem;
             position: absolute;
             top: 15px;
@@ -229,7 +227,7 @@
         .error {
             color: #e74c3c;
             font-size: 0.85rem;
-            margin-top: 5px;
+            margin-top: 5px; 
             display: none;
         }
 
@@ -374,6 +372,8 @@
         .form-group:nth-child(2) { animation-delay: 0.2s; }
         .form-group:nth-child(3) { animation-delay: 0.3s; }
         .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
@@ -398,6 +398,19 @@
                             <label for="fullName">Full Name <span class="required">*</span></label>
                             <input type="text" id="fullName" name="fullName" required>
                             <div class="error" id="fullNameError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="middleName">Middle Name</label>
+                            <input type="text" id="middleName" name="middleName">
+                            <div class="error" id="middleNameError"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName">
+                            <div class="error" id="lastNameError"></div>
                         </div>
                         <div class="form-group">
                             <label for="gender">Gender <span class="required">*</span></label>
@@ -748,7 +761,7 @@
                                 <input type="file" id="domicileCertificate" name="domicileCertificate" accept=".pdf">
                                 <label for="domicileCertificate" class="file-upload-label">Choose Domicile Certificate File</label>
                             </div>
-                            <div class="error"id="domicileCertificateError"></div>
+                            <div class="error" id="domicileCertificateError"></div>
                         </div>
                     </div>
 
@@ -882,11 +895,21 @@
             { test: (val) => /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' },
             { test: (val) => !/^\s|\s$/.test(val), message: 'Name cannot start or end with space' }
         ],
-        
+        middleName: [
+            { test: (val) => val === '' || val.length >= 2, message: 'Middle name must be at least 2 characters if provided' },
+            { test: (val) => val === '' || val.length <= 50, message: 'Middle name cannot exceed 50 characters' },
+            { test: (val) => val === '' || /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' },
+            { test: (val) => val === '' || !/^\s|\s$/.test(val), message: 'Middle name cannot start or end with space' }
+        ],
+        lastName: [
+            { test: (val) => val === '' || val.length >= 2, message: 'Last name must be at least 2 characters if provided' },
+            { test: (val) => val === '' || val.length <= 50, message: 'Last name cannot exceed 50 characters' },
+            { test: (val) => val === '' || /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' },
+            { test: (val) => val === '' || !/^\s|\s$/.test(val), message: 'Last name cannot start or end with space' }
+        ],
         gender: [
             { test: (val) => val.length > 0, message: 'Gender selection is required' }
         ],
-        
         dob: [
             { test: (val) => val.length > 0, message: 'Date of birth is required' },
             { test: (val) => /^\d{2}\/\d{2}\/\d{4}$/.test(val), message: 'Use DD/MM/YYYY format (e.g., 15/08/1995)' },
@@ -904,7 +927,6 @@
                 return day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 1980 && year <= 2010;
             }, message: 'Please enter a valid date' }
         ],
-        
         aadharNumber: [
             { test: (val) => val.length > 0, message: 'Aadhar number is required' },
             { test: (val) => /^\d{4}\s?\d{4}\s?\d{4}$/.test(val), message: 'Enter a valid 12-digit Aadhar number (e.g., 1234 5678 9012)' },
@@ -913,45 +935,37 @@
                 return cleaned.length === 12 && !isNaN(cleaned);
             }, message: 'Aadhar must contain exactly 12 digits' }
         ],
-        
         nationality: [
             { test: (val) => val.length > 0, message: 'Nationality selection is required' }
         ],
-        
         bloodGroup: [
             { test: (val) => val.length > 0, message: 'Blood group selection is required' }
         ],
-        
         fatherName: [
             { test: (val) => val.length > 0, message: "Father's name is required" },
             { test: (val) => val.length >= 2, message: 'Name must be at least 2 characters' },
             { test: (val) => val.length <= 50, message: 'Name cannot exceed 50 characters' },
             { test: (val) => /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' }
         ],
-        
         motherName: [
             { test: (val) => val.length > 0, message: "Mother's name is required" },
             { test: (val) => val.length >= 2, message: 'Name must be at least 2 characters' },
             { test: (val) => val.length <= 50, message: 'Name cannot exceed 50 characters' },
             { test: (val) => /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' }
         ],
-        
         mobileNumber: [
             { test: (val) => val.length > 0, message: 'Mobile number is required' },
             { test: (val) => /^[6-9]\d{9}$/.test(val), message: 'Enter a valid 10-digit mobile number starting with 6-9' },
             { test: (val) => val.length === 10, message: 'Mobile number must be exactly 10 digits' }
         ],
-        
         alternateContact: [
             { test: (val) => val === '' || /^[6-9]\d{9}$/.test(val), message: 'Enter a valid 10-digit mobile number starting with 6-9' }
         ],
-        
         email: [
             { test: (val) => val.length > 0, message: 'Email is required' },
             { test: (val) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val), message: 'Enter a valid email address' },
             { test: (val) => val.length <= 100, message: 'Email cannot exceed 100 characters' }
         ],
-        
         password: [
             { test: (val) => val.length > 0, message: 'Password is required' },
             { test: (val) => val.length >= 8, message: 'Password must be at least 8 characters long' },
@@ -961,88 +975,72 @@
             { test: (val) => /[0-9]/.test(val), message: 'Password must contain at least one number' },
             { test: (val) => /[!@#$%^&*(),.?":{}|<>]/.test(val), message: 'Password must contain at least one special character' }
         ],
-        
         confirmPassword: [
             { test: (val) => val.length > 0, message: 'Please confirm your password' },
             { test: (val) => val === $('#password').val(), message: 'Passwords do not match' }
         ],
-        
         motherTongue: [
             { test: (val) => val.length > 0, message: 'Mother tongue is required' },
             { test: (val) => /^[a-zA-Z\s]+$/.test(val), message: 'Only letters and spaces allowed' },
             { test: (val) => val.length >= 2, message: 'Must be at least 2 characters' }
         ],
-        
         address: [
             { test: (val) => val.length > 0, message: 'Complete address is required' },
             { test: (val) => val.length >= 10, message: 'Address must be at least 10 characters' },
             { test: (val) => val.length <= 200, message: 'Address cannot exceed 200 characters' }
         ],
-        
         pincode: [
             { test: (val) => val.length > 0, message: 'Pincode is required' },
             { test: (val) => /^\d{6}$/.test(val), message: 'Enter a valid 6-digit pincode' }
         ],
-        
         district: [
             { test: (val) => val.length > 0, message: 'District is required' },
             { test: (val) => /^[a-zA-Z\s]+$/.test(val), message: 'Only letters and spaces allowed' },
             { test: (val) => val.length >= 2, message: 'Must be at least 2 characters' }
         ],
-        
         state: [
             { test: (val) => val.length > 0, message: 'State is required' },
             { test: (val) => /^[a-zA-Z\s]+$/.test(val), message: 'Only letters and spaces allowed' },
             { test: (val) => val.length >= 2, message: 'Must be at least 2 characters' }
         ],
-        
         // Sports-Specific Fields
         sportsParticipated: [
             { test: (val) => val.length > 0, message: 'Sports participated is required' },
             { test: (val) => /^[a-zA-Z0-9\s,.-]+$/.test(val), message: 'Only letters, numbers, spaces, commas, dots and hyphens allowed' },
             { test: (val) => val.length >= 3, message: 'Must be at least 3 characters' }
         ],
-        
         position: [
             { test: (val) => val.length > 0, message: 'Position/Role is required' },
             { test: (val) => /^[a-zA-Z\s/-]+$/.test(val), message: 'Only letters, spaces, hyphens and forward slashes allowed' },
             { test: (val) => val.length >= 2, message: 'Must be at least 2 characters' }
         ],
-        
         yearsExperience: [
             { test: (val) => val.length > 0, message: 'Years of experience is required' }
         ],
-        
         height: [
             { test: (val) => val.length > 0, message: 'Height is required' },
             { test: (val) => !isNaN(val) && val > 0, message: 'Height must be a positive number' },
             { test: (val) => val >= 140 && val <= 220, message: 'Height must be between 140-220 cm' }
         ],
-        
         weight: [
             { test: (val) => val.length > 0, message: 'Weight is required' },
             { test: (val) => !isNaN(val) && val > 0, message: 'Weight must be a positive number' },
             { test: (val) => val >= 35 && val <= 150, message: 'Weight must be between 35-150 kg' }
         ],
-        
         favoriteSportsperson: [
             { test: (val) => val === '' || /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' }
         ],
-        
         achievements: [
             { test: (val) => val.length > 0, message: 'Achievements are required' },
             { test: (val) => val.length >= 10, message: 'Please provide detailed achievements (minimum 10 characters)' },
             { test: (val) => val.length <= 500, message: 'Achievements cannot exceed 500 characters' }
         ],
-        
         preferredVenue: [
             { test: (val) => val === '' || /^[a-zA-Z0-9\s,.-]+$/.test(val), message: 'Only letters, numbers, spaces, commas, dots and hyphens allowed' }
         ],
-        
         coachName: [
             { test: (val) => val === '' || /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' }
         ],
-        
         // College-Related Fields
         collegeName: [
             { test: (val) => val.length > 0, message: 'College/University name is required' },
@@ -1050,37 +1048,30 @@
             { test: (val) => val.length <= 100, message: 'College name cannot exceed 100 characters' },
             { test: (val) => /^[a-zA-Z0-9\s,.&()-]+$/.test(val), message: 'Only letters, numbers, spaces and common punctuation allowed' }
         ],
-        
         courseYear: [
             { test: (val) => val.length > 0, message: 'Course & Year is required' },
             { test: (val) => val.length >= 5, message: 'Must be at least 5 characters' },
             { test: (val) => /^[a-zA-Z0-9\s.&()-]+$/.test(val), message: 'Only letters, numbers, spaces and common punctuation allowed' }
         ],
-        
         collegeRollNumber: [
             { test: (val) => val.length > 0, message: 'College Roll Number/PRN is required' },
             { test: (val) => /^[a-zA-Z0-9/-]+$/.test(val), message: 'Only letters, numbers, hyphens and forward slashes allowed' },
             { test: (val) => val.length >= 3, message: 'Must be at least 3 characters' }
         ],
-        
         collegeJoiningYear: [
             { test: (val) => val.length > 0, message: 'College joining year is required' }
         ],
-        
         collegeAddress: [
             { test: (val) => val.length > 0, message: 'College address is required' },
             { test: (val) => val.length >= 10, message: 'Address must be at least 10 characters' },
             { test: (val) => val.length <= 200, message: 'Address cannot exceed 200 characters' }
         ],
-        
         sportsCoordinator: [
             { test: (val) => val === '' || /^[a-zA-Z\s.]+$/.test(val), message: 'Only letters, spaces and dots allowed' }
         ],
-        
         hostelResident: [
             { test: (val) => val.length > 0, message: 'Hostel resident status is required' }
         ],
-        
         collegeSportsAchievements: [
             { test: (val) => val === '' || val.length <= 300, message: 'Cannot exceed 300 characters' }
         ]
@@ -1201,7 +1192,7 @@
     });
 
     // Name fields - only letters and spaces
-    $('#fullName, #fatherName, #motherName, #motherTongue, #district, #state, #favoriteSportsperson, #coachName, #sportsCoordinator').on('input', function() {
+    $('#fullName, #middleName, #lastName, #fatherName, #motherName, #motherTongue, #district, #state, #favoriteSportsperson, #coachName, #sportsCoordinator').on('input', function() {
         $(this).val($(this).val().replace(/[^a-zA-Z\s.]/g, ''));
     });
 
