@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Official website of the Sports Department of India, promoting sports excellence and athlete development.">
-    <meta name="keywords" content="sports, India, athletics, cricket, hockey, badminton, sports events">
+    <meta name="description" content="World-class sports facilities provided by the Sports Department of India.">
+    <meta name="keywords" content="sports facilities, India, stadiums, training centers, sports academies">
     <meta name="author" content="Sports Department of India">
-    <meta property="og:title" content="Sports Department of India">
-    <meta property="og:description" content="Fostering talent, promoting sportsmanship, and building champions for a stronger India.">
-    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg">
-    <meta property="og:url" content="https://www.sportsdept.gov.in">
-    <title>Sports Department of India</title>
+    <title>Facilities - Sports Department of India</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         :root {
@@ -35,7 +31,6 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--light-color);
-            scroll-behavior: smooth;
         }
 
         header {
@@ -105,68 +100,9 @@
             color: white;
         }
 
-        .hero {
-            background: url('bg2.jpg') center/cover no-repeat;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            margin-top: 90px;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            padding: 2rem;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-
         main {
             max-width: 1200px;
-            margin: 2rem auto;
+            margin: 90px auto 2rem;
             padding: 0 1rem;
         }
 
@@ -221,6 +157,24 @@
         .sport-content h3 {
             color: var(--accent-color);
             margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
         }
 
         footer {
@@ -367,19 +321,6 @@
                 padding: 1rem;
                 border-bottom: 1px solid #eee;
             }
-
-            .hero {
-                height: 400px;
-                margin-top: 80px;
-            }
-
-            .hero h2 {
-                font-size: 1.75rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
         }
 
         @media (max-width: 576px) {
@@ -389,10 +330,6 @@
 
             .logo img {
                 height: 50px;
-            }
-
-            .hero {
-                height: 350px;
             }
 
             .section-title {
@@ -411,10 +348,10 @@
             <button class="nav-toggle" aria-label="Toggle Navigation" aria-expanded="false">☰</button>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="news.html">News</a></li>
                     <li><a href="events.html">Events</a></li>
-                    <li><a href="facilities.html">Facilities</a></li>
+                    <li><a href="facilities.html" class="active">Facilities</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="registration.html">Register</a></li>
                 </ul>
@@ -422,40 +359,32 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h2>Excellence in Indian Sports</h2>
-            <p>Fostering talent, promoting sportsmanship, and building champions for a stronger India</p>
-            <a href="#sports" class="btn">Explore Sports</a>
-        </div>
-    </section>
-
     <main>
-        <section class="featured-sports" id="sports">
-            <h2 class="section-title">Popular Sports</h2>
+        <section class="featured-sports">
+            <h2 class="section-title">World-Class Facilities</h2>
             <div class="sports-grid">
                 <div class="sport-card">
-                    <img src="cricket2.jpg" alt="Cricket" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Cricket'">
+                    <img src="national stadium.jpg" alt="Stadium" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Stadium'">
                     <div class="sport-content">
-                        <h3>Cricket</h3>
-                        <p>India's most popular sport with a rich heritage and global achievements including World Cup victories.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <h3>National Stadiums</h3>
+                        <p>State-of-the-art stadiums across the country equipped with international standard facilities.</p>
+                        <a href="#" class="btn">View Facilities</a>
                     </div>
                 </div>
                 <div class="sport-card">
-                    <img src="hockey.jpg" alt="Hockey" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Hockey'">
+                    <img src="training centre.jpg" alt="Training Center" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Training+Center'">
                     <div class="sport-content">
-                        <h3>Hockey</h3>
-                        <p>The national sport of India with a legendary history and Olympic gold medals.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <h3>Training Centers</h3>
+                        <p>Specialized training centers with advanced equipment and expert coaching staff.</p>
+                        <a href="#" class="btn">View Facilities</a>
                     </div>
                 </div>
                 <div class="sport-card">
-                    <img src="badminton.jpg" alt="Badminton" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Badminton'">
+                    <img src="sports academics.jpg" alt="Sports Academy" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Academy'">
                     <div class="sport-content">
-                        <h3>Badminton</h3>
-                        <p>A rapidly growing sport with international stars like Saina Nehwal and P.V. Sindhu.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <h3>Sports Academies</h3>
+                        <p>Residential academies providing comprehensive training, education, and development for athletes.</p>
+                        <a href="#" class="btn">View Facilities</a>
                     </div>
                 </div>
             </div>
@@ -491,109 +420,3 @@
                     <li><a href="#">Annual Reports</a></li>
                     <li><a href="#">Schemes & Programs</a></li>
                     <li><a href="#">Careers</a></li>
-                    <li><a href="#">Downloads</a></li>
-                    <li><a href="#">RTI</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Newsletter</h3>
-                <p>Subscribe to our newsletter to get the latest updates on sports events and news.</p>
-                <form id="newsletterForm" novalidate>
-                    <div class="form-group">
-                        <label for="newsletterEmail" class="visually-hidden">Email</label>
-                        <input type="email" id="newsletterEmail" placeholder="Enter your email" class="form-control" required aria-describedby="newsletterError">
-                        <span id="newsletterError" class="error">Please enter a valid email address.</span>
-                    </div>
-                    <button type="submit" class="btn">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>© 2025 Sports Department of India. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to Top">↑</a>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script>
-        // Mobile Navigation Toggle
-        const navToggle = document.querySelector('.nav-toggle');
-        const nav = document.querySelector('nav');
-        navToggle.addEventListener('click', () => {
-            const isExpanded = nav.classList.toggle('active');
-            navToggle.setAttribute('aria-expanded', isExpanded);
-            navToggle.textContent = isExpanded ? '✕' : '☰';
-        });
-
-        // Close nav when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!nav.contains(e.target) && !navToggle.contains(e.target) && nav.classList.contains('active')) {
-                nav.classList.remove('active');
-                navToggle.setAttribute('aria-expanded', 'false');
-                navToggle.textContent = '☰';
-            }
-        });
-
-        // Back to Top Button
-        const backToTopBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        });
-
-        backToTopBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Newsletter Form Validation
-        const newsletterForm = document.getElementById('newsletterForm');
-        function validateEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-
-        function showError(input, errorElement, message) {
-            input.classList.add('invalid');
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-        }
-
-        function clearErrors(form) {
-            const inputs = form.querySelectorAll('.form-control');
-            const errors = form.querySelectorAll('.error');
-            inputs.forEach(input => input.classList.remove('invalid'));
-            errors.forEach(error => {
-                error.style.display = 'none';
-                error.textContent = '';
-            });
-        }
-
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            clearErrors(newsletterForm);
-            const email = document.getElementById('newsletterEmail').value.trim();
-            if (!validateEmail(email)) {
-                showError(document.getElementById('newsletterEmail'), document.getElementById('newsletterError'), 'Please enter a valid email address.');
-                return;
-            }
-            console.log('Newsletter Subscribed:', { email });
-            alert('Thank you for subscribing to our newsletter!');
-            newsletterForm.reset();
-        });
-
-        // Handle image errors
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('error', () => {
-                if (!img.src.includes('via.placeholder.com')) {
-                    img.src = 'https://via.placeholder.com/150?text=Image+Not+Found';
-                }
-            });
-        });
-    </script>
-</body>
-</html>
