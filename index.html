@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official website of the Sports Department of India, promoting sports excellence and athlete development.">
+    <meta name="keywords" content="sports, India, athletics, cricket, hockey, badminton, sports events">
+    <meta name="author" content="Sports Department of India">
+    <meta property="og:title" content="Sports Department of India">
+    <meta property="og:description" content="Fostering talent, promoting sportsmanship, and building champions for a stronger India.">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg">
+    <meta property="og:url" content="https://www.sportsdept.gov.in">
     <title>Sports Department of India</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+        /* [Previous CSS remains unchanged] */
         :root {
             --primary-color: #ff7433;
             --secondary-color: #138808;
@@ -27,9 +36,10 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--light-color);
+            scroll-behavior: smooth; /* Added for smooth scrolling */
         }
 
-        /* Header Styles */
+        /* [Rest of the CSS remains unchanged, included for reference] */
         header {
             background: linear-gradient(135deg, var(--primary-color), #fff, var(--secondary-color));
             padding: 1rem;
@@ -97,7 +107,6 @@
             color: white;
         }
 
-        /* Hero Section */
         .hero {
             background: url('bg2.jpg') center/cover no-repeat;
             height: 500px;
@@ -157,7 +166,6 @@
             transform: translateY(-3px);
         }
 
-        /* Main Content */
         main {
             max-width: 1200px;
             margin: 2rem auto;
@@ -183,7 +191,6 @@
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
         }
 
-        /* Featured Sports */
         .featured-sports {
             padding: 3rem 0;
         }
@@ -222,7 +229,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Latest News */
         .latest-news {
             padding: 3rem 0;
             background-color: white;
@@ -272,7 +278,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Events Section */
         .upcoming-events {
             padding: 3rem 0;
         }
@@ -314,7 +319,6 @@
             font-size: 0.9rem;
         }
 
-        /* Contact Section */
         .contact-section {
             background-color: rgb(200, 200, 200);
             padding: 3rem 1rem;
@@ -385,10 +389,8 @@
             font-size: 1.2rem;
         }
 
-        /* Footer */
         footer {
-            /* background: linear-gradient(to right, var(--accent-color), var(--primary-color)); */
-            background: linear-gradient(180deg,rgb(12, 12, 12),rgb(62, 62, 62));
+            background: linear-gradient(180deg, rgb(12, 12, 12), rgb(62, 62, 62));
             color: white;
             padding: 3rem 1rem;
         }
@@ -466,7 +468,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 20px;
@@ -496,7 +497,6 @@
             background-color: var(--secondary-color);
         }
 
-        /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h2 {
                 font-size: 2rem;
@@ -575,6 +575,18 @@
                 flex-direction: column;
             }
         }
+
+        /* Added: Error message styling for form validation */
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-control.invalid {
+            border-color: red;
+        }
     </style>
 </head>
 <body>
@@ -582,10 +594,10 @@
     <header>
         <div class="top-bar">
             <div class="logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg" alt="Sports Department of India Logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg" alt="Sports Department of India Logo" onerror="this.src='https://via.placeholder.com/60?text=Logo'">
                 <h1>Sports Department of India</h1>
             </div>
-            <button class="nav-toggle" aria-label="Toggle Navigation">
+            <button class="nav-toggle" aria-label="Toggle Navigation" aria-expanded="false">
                 ☰
             </button>
             <nav>
@@ -597,7 +609,6 @@
                     <li><a href="#facilities">Facilities</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="registration.html">Register</a></li>
-
                 </ul>
             </nav>
         </div>
@@ -608,7 +619,7 @@
         <div class="hero-content">
             <h2>Excellence in Indian Sports</h2>
             <p>Fostering talent, promoting sportsmanship, and building champions for a stronger India</p>
-            <a href="" class="btn">Explore Sports</a>
+            <a href="#sports" class="btn">Explore Sports</a>
         </div>
     </section>
 
@@ -619,7 +630,7 @@
             <h2 class="section-title">Popular Sports</h2>
             <div class="sports-grid">
                 <div class="sport-card">
-                    <img src="cricket2.jpg" alt="Cricket" class="sport-img">
+                    <img src="cricket2.jpg" alt="Cricket" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Cricket'">
                     <div class="sport-content">
                         <h3>Cricket</h3>
                         <p>India's most popular sport with a rich heritage and global achievements including World Cup victories.</p>
@@ -627,7 +638,7 @@
                     </div>
                 </div>
                 <div class="sport-card">
-                    <img src="hockey.jpg" alt="Hockey" class="sport-img">
+                    <img src="hockey.jpg" alt="Hockey" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Hockey'">
                     <div class="sport-content">
                         <h3>Hockey</h3>
                         <p>The national sport of India with a legendary history and Olympic gold medals.</p>
@@ -635,7 +646,7 @@
                     </div>
                 </div>
                 <div class="sport-card">
-                    <img src="badminton.jpg" alt="Badminton" class="sport-img">
+                    <img src="badminton.jpg" alt="Badminton" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Badminton'">
                     <div class="sport-content">
                         <h3>Badminton</h3>
                         <p>A rapidly growing sport with international stars like Saina Nehwal and P.V. Sindhu.</p>
@@ -650,7 +661,7 @@
             <h2 class="section-title">Latest News</h2>
             <div class="news-container">
                 <div class="news-card">
-                    <img src="sports budget.jpg" alt="News 1" class="news-img">
+                    <img src="sports budget.jpg" alt="News 1" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
                     <div class="news-content">
                         <span class="news-date">May 5, 2025</span>
                         <h3 class="news-title">National Sports Budget Increased</h3>
@@ -659,7 +670,7 @@
                     </div>
                 </div>
                 <div class="news-card">
-                    <img src="young athlete training centre.jpg" alt="News 2" class="news-img">
+                    <img src="young athlete training centre.jpg" alt="News 2" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
                     <div class="news-content">
                         <span class="news-date">May 3, 2025</span>
                         <h3 class="news-title">Young Athletes Training Program</h3>
@@ -668,7 +679,7 @@
                     </div>
                 </div>
                 <div class="news-card">
-                    <img src="asian games.jpg" alt="News 3" class="news-img">
+                    <img src="asian games.jpg" alt="News 3" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
                     <div class="news-content">
                         <span class="news-date">April 28, 2025</span>
                         <h3 class="news-title">Asian Games Preparation</h3>
@@ -677,7 +688,7 @@
                     </div>
                 </div>
                 <div class="news-card">
-                    <img src="sports university.jpg" alt="News 4" class="news-img">
+                    <img src="sports university.jpg" alt="News 4" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
                     <div class="news-content">
                         <span class="news-date">April 22, 2025</span>
                         <h3 class="news-title">New Sports University</h3>
@@ -724,7 +735,7 @@
             <h2 class="section-title">World-Class Facilities</h2>
             <div class="sports-grid">
                 <div class="sport-card">
-                    <img src="national stadium.jpg" alt="Stadium" class="sport-img">
+                    <img src="national stadium.jpg" alt="Stadium" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Stadium'">
                     <div class="sport-content">
                         <h3>National Stadiums</h3>
                         <p>State-of-the-art stadiums across the country equipped with international standard facilities.</p>
@@ -732,7 +743,7 @@
                     </div>
                 </div>
                 <div class="sport-card">
-                    <img src="training centre.jpg" alt="Training Center" class="sport-img">
+                    <img src="training centre.jpg" alt="Training Center" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Training+Center'">
                     <div class="sport-content">
                         <h3>Training Centers</h3>
                         <p>Specialized training centers with advanced equipment and expert coaching staff.</p>
@@ -740,7 +751,7 @@
                     </div>
                 </div>
                 <div class="sport-card">
-                    <img src="sports academics.jpg" alt="Sports Academy" class="sport-img">
+                    <img src="sports academics.jpg" alt="Sports Academy" class="sport-img" onerror="this.src='https://via.placeholder.com/280x200?text=Academy'">
                     <div class="sport-content">
                         <h3>Sports Academies</h3>
                         <p>Residential academies providing comprehensive training, education, and development for athletes.</p>
@@ -755,22 +766,26 @@
             <h2 class="section-title">Contact Us</h2>
             <div class="contact-container">
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" novalidate>
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <input type="text" id="name" class="form-control" required aria-describedby="nameError">
+                            <span id="nameError" class="error">Please enter a valid name (at least 2 characters).</span>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
+                            <input type="email" id="email" class="form-control" required aria-describedby="emailError">
+                            <span id="emailError" class="error">Please enter a valid email address.</span>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
+                            <input type="text" id="subject" class="form-control" required aria-describedby="subjectError">
+                            <span id="subjectError" class="error">Please enter a subject (at least 5 characters).</span>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                            <textarea id="message" class="form-control" required aria-describedby="messageError"></textarea>
+                            <span id="messageError" class="error">Please enter a message (at least 10 characters).</span>
                         </div>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
@@ -788,14 +803,14 @@
                         <div class="contact-icon">📞</div>
                         <div>
                             <h4>Phone</h4>
-                            <p>+91 11 2345 6789</p>
+                            <p><a href="tel:+911123456789">+91 11 2345 6789</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">💌</div>
                         <div>
                             <h4>Email</h4>
-                            <p>contact@sportsdept.gov.in</p>
+                            <p><a href="mailto:contact@sportsdept.gov.in">contact@sportsdept.gov.in</a></p>
                         </div>
                     </div>
                 </div>
@@ -810,10 +825,10 @@
                 <h3>Sports Department</h3>
                 <p>Promoting and developing sports across India to establish the country as a sporting powerhouse globally.</p>
                 <div class="social-links">
-                    <a href="#" class="social-icon">f</a>
-                    <a href="#" class="social-icon">X</a>
-                    <a href="#" class="social-icon">in</a>
-                    <a href="#" class="social-icon">ig</a>
+                    <a href="https://facebook.com" class="social-icon" aria-label="Facebook">f</a>
+                    <a href="https://x.com" class="social-icon" aria-label="X">X</a>
+                    <a href="https://linkedin.com" class="social-icon" aria-label="LinkedIn">in</a>
+                    <a href="https://instagram.com" class="social-icon" aria-label="Instagram">ig</a>
                 </div>
             </div>
             <div class="footer-column">
@@ -841,36 +856,44 @@
             <div class="footer-column">
                 <h3>Newsletter</h3>
                 <p>Subscribe to our newsletter to get the latest updates on sports events and news.</p>
-                <form id="newsletterForm">
+                <form id="newsletterForm" novalidate>
                     <div class="form-group">
-                        <input type="email" placeholder="Enter your email" class="form-control" required>
+                        <label for="newsletterEmail" class="visually-hidden">Email</label>
+                        <input type="email" id="newsletterEmail" placeholder="Enter your email" class="form-control" required aria-describedby="newsletterError">
+                        <span id="newsletterError" class="error">Please enter a valid email address.</span>
                     </div>
                     <button type="submit" class="btn">Subscribe</button>
                 </form>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2025 Sports Department of India. All rights reserved.</p>
+            <p>© 2025 Sports Department of India. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" id="backToTop">↑</a>
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to Top">↑</a>
 
     <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script>
         // Mobile Navigation Toggle
         const navToggle = document.querySelector('.nav-toggle');
         const nav = document.querySelector('nav');
 
         navToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
+            const isExpanded = nav.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', isExpanded);
+            navToggle.textContent = isExpanded ? '✕' : '☰';
         });
 
         // Close nav when clicking outside
         document.addEventListener('click', (e) => {
             if (!nav.contains(e.target) && !navToggle.contains(e.target) && nav.classList.contains('active')) {
                 nav.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.textContent = '☰';
             }
         });
 
@@ -893,18 +916,82 @@
             });
         });
 
-        // Form Submission
+        // Form Validation and Submission
         const contactForm = document.getElementById('contactForm');
         const newsletterForm = document.getElementById('newsletterForm');
 
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function showError(input, errorElement, message) {
+            input.classList.add('invalid');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        function clearErrors(form) {
+            const inputs = form.querySelectorAll('.form-control');
+            const errors = form.querySelectorAll('.error');
+            inputs.forEach(input => input.classList.remove('invalid'));
+            errors.forEach(error => {
+                error.style.display = 'none';
+                error.textContent = '';
+            });
+        }
+
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
+            clearErrors(contactForm);
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            let isValid = true;
+
+            if (name.length < 2) {
+                showError(document.getElementById('name'), document.getElementById('nameError'), 'Please enter a valid name (at least 2 characters).');
+                isValid = false;
+            }
+
+            if (!validateEmail(email)) {
+                showError(document.getElementById('email'), document.getElementById('emailError'), 'Please enter a valid email address.');
+                isValid = false;
+            }
+
+            if (subject.length < 5) {
+                showError(document.getElementById('subject'), document.getElementById('subjectError'), 'Please enter a subject (at least 5 characters).');
+                isValid = false;
+            }
+
+            if (message.length < 10) {
+                showError(document.getElementById('message'), document.getElementById('messageError'), 'Please enter a message (at least 10 characters).');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Simulate form submission (replace with actual API call in production)
+                console.log('Contact Form Submitted:', { name, email, subject, message });
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            }
         });
 
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            clearErrors(newsletterForm);
+
+            const email = document.getElementById('newsletterEmail').value.trim();
+
+            if (!validateEmail(email)) {
+                showError(document.getElementById('newsletterEmail'), document.getElementById('newsletterError'), 'Please enter a valid email address.');
+                return;
+            }
+
+            // Simulate newsletter subscription (replace with actual API call in production)
+            console.log('Newsletter Subscribed:', { email });
             alert('Thank you for subscribing to our newsletter!');
             newsletterForm.reset();
         });
@@ -931,4 +1018,33 @@
             });
         });
 
-        
+        // Smooth scrolling for navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else {
+                    window.location.href = targetId; // For external links like registration.html
+                }
+            });
+        });
+
+        // Handle image errors globally
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', () => {
+                if (!img.src.includes('via.placeholder.com')) {
+                    img.src = 'https://via.placeholder.com/150?text=Image+Not+Found';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
