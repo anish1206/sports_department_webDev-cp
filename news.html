@@ -191,6 +191,72 @@
             transform: translateY(-3px);
         }
 
+        .news-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--light-color);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .news-search {
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .news-search input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .load-more {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .social-share {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .share-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .share-icon:hover {
+            background-color: var(--primary-color);
+        }
+
         footer {
             background: linear-gradient(180deg, rgb(12, 12, 12), rgb(62, 62, 62));
             color: white;
@@ -349,6 +415,11 @@
             .section-title {
                 font-size: 1.5rem;
             }
+
+            .news-filter {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -376,43 +447,76 @@
     <main>
         <section class="latest-news">
             <h2 class="section-title">Latest News</h2>
-            <div class="news-container">
-                <div class="news-card">
+            <div class="news-search">
+                <input type="text" id="newsSearch" placeholder="Search news..." class="form-control">
+            </div>
+            <div class="news-filter">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="cricket">Cricket</button>
+                <button class="filter-btn" data-category="hockey">Hockey</button>
+                <button class="filter-btn" data-category="badminton">Badminton</button>
+                <button class="filter-btn" data-category="general">General</button>
+            </div>
+            <div class="news-container" id="newsContainer">
+                <div class="news-card" data-category="general">
                     <img src="sports budget.jpg" alt="News 1" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
                     <div class="news-content">
                         <span class="news-date">May 5, 2025</span>
                         <h3 class="news-title">National Sports Budget Increased</h3>
                         <p class="news-excerpt">Government increases sports budget by 25% to boost infrastructure and athlete development.</p>
                         <a href="#" class="btn">Read More</a>
+                        <div class="social-share">
+                            <a href="#" class="share-icon" aria-label="Share on Facebook">f</a>
+                            <a href="#" class="share-icon" aria-label="Share on X">X</a>
+                            <a href="#" class="share-icon" aria-label="Share on LinkedIn">in</a>
+                        </div>
                     </div>
                 </div>
-                <div class="news-card">
+                <div class="news-card" data-category="general">
                     <img src="young athlete training centre.jpg" alt="News 2" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
                     <div class="news-content">
                         <span class="news-date">May 3, 2025</span>
                         <h3 class="news-title">Young Athletes Training Program</h3>
                         <p class="news-excerpt">New national program launched to identify and nurture young sporting talent across India.</p>
                         <a href="#" class="btn">Read More</a>
+                        <div class="social-share">
+                            <a href="#" class="share-icon" aria-label="Share on Facebook">f</a>
+                            <a href="#" class="share-icon" aria-label="Share on X">X</a>
+                            <a href="#" class="share-icon" aria-label="Share on LinkedIn">in</a>
+                        </div>
                     </div>
                 </div>
-                <div class="news-card">
+                <div class="news-card" data-category="general">
                     <img src="asian games.jpg" alt="News 3" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
                     <div class="news-content">
                         <span class="news-date">April 28, 2025</span>
                         <h3 class="news-title">Asian Games Preparation</h3>
                         <p class="news-excerpt">Indian contingent prepares for upcoming Asian Games with special training camps.</p>
                         <a href="#" class="btn">Read More</a>
+                        <div class="social-share">
+                            <a href="#" class="share-icon" aria-label="Share on Facebook">f</a>
+                            <a href="#" class="share-icon" aria-label="Share on X">X</a>
+                            <a href="#" class="share-icon" aria-label="Share on LinkedIn">in</a>
+                        </div>
                     </div>
                 </div>
-                <div class="news-card">
+                <div class="news-card" data-category="general">
                     <img src="sports university.jpg" alt="News 4" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
                     <div class="news-content">
                         <span class="news-date">April 22, 2025</span>
                         <h3 class="news-title">New Sports University</h3>
                         <p class="news-excerpt">Foundation stone laid for state-of-the-art sports university in Maharashtra.</p>
                         <a href="#" class="btn">Read More</a>
+                        <div class="social-share">
+                            <a href="#" class="share-icon" aria-label="Share on Facebook">f</a>
+                            <a href="#" class="share-icon" aria-label="Share on X">X</a>
+                            <a href="#" class="share-icon" aria-label="Share on LinkedIn">in</a>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="load-more">
+                <button id="loadMoreBtn" class="btn">Load More</button>
             </div>
         </section>
     </main>
@@ -541,12 +645,101 @@
             newsletterForm.reset();
         });
 
+        // News Filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const newsCards = document.querySelectorAll('.news-card');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const category = button.getAttribute('data-category');
+                newsCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // News Search
+        const searchInput = document.getElementById('newsSearch');
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            newsCards.forEach(card => {
+                const title = card.querySelector('.news-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.news-excerpt').textContent.toLowerCase();
+                if (title.includes(query) || excerpt.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Load More News (Simulated)
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const newsContainer = document.getElementById('newsContainer');
+        loadMoreBtn.addEventListener('click', () => {
+            const newNews = [
+                {
+                    date: 'April 15, 2025',
+                    title: 'New Cricket Academy Launched',
+                    excerpt: 'A state-of-the-art cricket academy opens in Bangalore to train future stars.',
+                    category: 'cricket',
+                    img: 'cricket_academy.jpg'
+                },
+                {
+                    date: 'April 10, 2025',
+                    title: 'Hockey Team Wins International Friendly',
+                    excerpt: 'Indian hockey team triumphs in a thrilling match against Australia.',
+                    category: 'hockey',
+                    img: 'hockey_match.jpg'
+                }
+            ];
+
+            newNews.forEach(news => {
+                const card = document.createElement('div');
+                card.className = 'news-card';
+                card.setAttribute('data-category', news.category);
+                card.innerHTML = `
+                    <img src="${news.img}" alt="${news.title}" class="news-img" onerror="this.src='https://via.placeholder.com/300x160?text=News'">
+                    <div class="news-content">
+                        <span class="news-date">${news.date}</span>
+                        <h3 class="news-title">${news.title}</h3>
+                        <p class="news-excerpt">${news.excerpt}</p>
+                        <a href="#" class="btn">Read More</a>
+                        <div class="social-share">
+                            <a href="#" class="share-icon" aria-label="Share on Facebook">f</a>
+                            <a href="#" class="share-icon" aria-label="Share on X">X</a>
+                            <a href="#" class="share-icon" aria-label="Share on LinkedIn">in</a>
+                        </div>
+                    </div>
+                `;
+                newsContainer.appendChild(card);
+            });
+
+            // Simulate disabling button after loading (in a real app, check if more news exists)
+            loadMoreBtn.textContent = 'No More News';
+            loadMoreBtn.disabled = true;
+        });
+
         // Handle image errors
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('error', () => {
                 if (!img.src.includes('via.placeholder.com')) {
                     img.src = 'https://via.placeholder.com/150?text=Image+Not+Found';
                 }
+            });
+        });
+
+        // Social Share (Simulated)
+        document.querySelectorAll('.share-icon').forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                e.preventDefault();
+                const platform = e.target.getAttribute('aria-label').replace('Share on ', '');
+                alert(`Simulated sharing on ${platform}`);
             });
         });
     </script>
