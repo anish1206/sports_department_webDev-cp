@@ -348,6 +348,184 @@
             font-size: 1rem;
             padding-left: 2rem;
         }
+          .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #1a472a;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            color: #ff4500;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            border-color: #ff9933;
+            box-shadow: 0 15px 35px rgba(255, 153, 51, 0.2);
+        }
+
+        .news-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover .news-img {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .news-tag {
+            background: linear-gradient(45deg, #ff9933, #ff4500);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .news-date {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .news-title {
+            color: #1a472a;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        .news-excerpt {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .news-quote {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            border-left: 4px solid #ff9933;
+            padding: 12px 15px;
+            margin: 12px 0;
+            font-style: italic;
+            color: #2d3436;
+            border-radius: 0 10px 10px 0;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #138808, #0f6607);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #0f6607, #0d5506);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(19, 136, 8, 0.3);
+        }
+
+        .social-share {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .share-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .share-icon.facebook {
+            background: #3b5998;
+        }
+
+        .share-icon.twitter {
+            background: #1da1f2;
+        }
+
+        .share-icon.whatsapp {
+            background: #25d366;
+        }
+
+        .share-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
 
         .social-share {
             display: flex;
@@ -831,8 +1009,126 @@
                 <button class="filter-btn" data-category="olympics">Olympics</button>
                 <button class="filter-btn" data-category="general">General</button>
             </div>
-            <div class="news-container" id="newsContainer">
-                <!-- News cards will be populated by JavaScript -->
+
+        <div class="news-grid">
+            <!-- Cricket Card 1 -->
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=400&h=200&fit=crop" alt="India Cricket Team" class="news-img">
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-tag">Cricket</span>
+                        <span class="news-date">May 24, 2025</span>
+                    </div>
+                    <h3 class="news-title">India Clinches Series 3-1 Against Australia</h3>
+                    <p class="news-excerpt">Team India delivered a spectacular performance in the final Test match at Adelaide, securing a historic series victory with Virat Kohli scoring his 29th century.</p>
+                    <div class="news-quote">"This victory shows the depth and talent of Indian cricket" - Rohit Sharma</div>
+                    <a href="#" class="btn">Read More</a>
+                    <div class="social-share">
+                        <a href="#" class="share-icon facebook">f</a>
+                        <a href="#" class="share-icon twitter">X</a>
+                        <a href="#" class="share-icon whatsapp">W</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kabaddi Card -->
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop" alt="Pro Kabaddi League" class="news-img">
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-tag">Kabaddi</span>
+                        <span class="news-date">May 23, 2025</span>
+                    </div>
+                    <h3 class="news-title">Pro Kabaddi League: Tamil Thalaivas Win Championship</h3>
+                    <p class="news-excerpt">Tamil Thalaivas defeated Bengaluru Bulls 42-38 in a thrilling PKL final, claiming their first-ever championship title in front of a packed Chennai crowd.</p>
+                    <a href="#" class="btn">Read More</a>
+                    <div class="social-share">
+                        <a href="#" class="share-icon facebook">f</a>
+                        <a href="#" class="share-icon twitter">X</a>
+                        <a href="#" class="share-icon whatsapp">W</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hockey Card -->
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop" alt="Indian Hockey Team" class="news-img">
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-tag">Hockey</span>
+                        <span class="news-date">May 22, 2025</span>
+                    </div>
+                    <h3 class="news-title">Indian Men's Hockey Team Qualifies for Paris Olympics</h3>
+                    <p class="news-excerpt">The Indian hockey team secured their Olympic berth with a commanding 4-1 victory over Belgium in the FIH Nations Cup final held in Bhubaneswar.</p>
+                    <div class="news-quote">"This qualification is a result of years of hard work and dedication" - Harmanpreet Singh</div>
+                    <a href="#" class="btn">Read More</a>
+                    <div class="social-share">
+                        <a href="#" class="share-icon facebook">f</a>
+                        <a href="#" class="share-icon twitter">X</a>
+                        <a href="#" class="share-icon whatsapp">W</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badminton Card -->
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop" alt="PV Sindhu Badminton" class="news-img">
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-tag">Badminton</span>
+                        <span class="news-date">May 21, 2025</span>
+                    </div>
+                    <h3 class="news-title">PV Sindhu Wins All England Open Championship</h3>
+                    <p class="news-excerpt">PV Sindhu creates history by defeating Carolina Marin in straight sets to claim her second All England Open title, cementing her legacy in badminton.</p>
+                    <a href="#" class="btn">Read More</a>
+                    <div class="social-share">
+                        <a href="#" class="share-icon facebook">f</a>
+                        <a href="#" class="share-icon twitter">X</a>
+                        <a href="#" class="share-icon whatsapp">W</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Football Card -->
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=200&fit=crop" alt="Indian Football Team" class="news-img">
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-tag">Football</span>
+                        <span class="news-date">May 20, 2025</span>
+                    </div>
+                    <h3 class="news-title">ISL Final: Mumbai City FC Defeats Mohun Bagan</h3>
+                    <p class="news-excerpt">Mumbai City FC won their third ISL title with a thrilling 2-1 victory over ATK Mohun Bagan at the Salt Lake Stadium in Kolkata.</p>
+                    <div class="news-quote">"The team showed incredible fighting spirit throughout the season" - Des Buckingham</div>
+                    <a href="#" class="btn">Read More</a>
+                    <div class="social-share">
+                        <a href="#" class="share-icon facebook">f</a>
+                        <a href="#" class="share-icon twitter">X</a>
+                        <a href="#" class="share-icon whatsapp">W</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wrestling Card -->
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop" alt="Indian Wrestling" class="news-img">
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-tag">Wrestling</span>
+                        <span class="news-date">May 19, 2025</span>
+                    </div>
+                    <h3 class="news-title">Bajrang Punia Wins Gold at Asian Wrestling Championships</h3>
+                    <p class="news-excerpt">Bajrang Punia dominated the 65kg freestyle category to win gold at the Asian Wrestling Championships held in New Delhi, continuing India's wrestling excellence.</p>
+                    <a href="#" class="btn">Read More</a>
+                    <div class="social-share">
+                        <a href="#" class="share-icon facebook">f</a>
+                        <a href="#" class="share-icon twitter">X</a>
+                        <a href="#" class="share-icon whatsapp">W</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
             </div>
             <div class="load-more">
                 <button id="loadMoreBtn" class="btn">Load More News</button>
@@ -1350,33 +1646,7 @@
         ];
 
         // Initialize news container
-        function initializeNews() {
-            const container = document.getElementById('newsContainer');
-            container.innerHTML = '';
-            
-            newsArticles.forEach(article => {
-                const newsCard = document.createElement('div');
-                newsCard.className = 'news-card';
-                newsCard.setAttribute('data-category', article.category);
-                newsCard.innerHTML = `
-                    <img src="${article.image}" alt="${article.title}" class="news-img" onerror="this.src='https://via.placeholder.com/300x200?text=News'">
-                    <div class="news-content">
-                        <span class="news-tag">${article.tag}</span>
-                        <span class="news-date">${article.date}</span>
-                        <h3 class="news-title">${article.title}</h3>
-                        <p class="news-excerpt">${article.excerpt}</p>
-                        ${article.quote ? `<div class="news-quote">"${article.quote}"</div>` : ''}
-                        <a href="#" class="btn" onclick="openNews(${article.id})">Read More</a>
-                        <div class="social-share">
-                            <a href="#" class="share-icon" aria-label="Share on Facebook" onclick="shareNews('facebook', ${article.id})">f</a>
-                            <a href="#" class="share-icon" aria-label="Share on X" onclick="shareNews('twitter', ${article.id})">X</a>
-                            <a href="#" class="share-icon" aria-label="Share on LinkedIn" onclick="shareNews('linkedin', ${article.id})">in</a>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(newsCard);
-            });
-        }
+        
 
         // Mobile Navigation Toggle
         const navToggle = document.querySelector('.nav-toggle');
